@@ -11,6 +11,11 @@
 	width:50%;
 	text-align:center;
 	}
+#txt:hover{
+	color:red;
+	cursor:pointer;
+	}
+	
 </style>
 </head>
 <body>
@@ -22,16 +27,18 @@
 <img src="p01.jpg		" >
 </div>
 
-<div id=txt>
+<div id=txt onclick="ps()">
 دار
 <br>
 دار دار دار
 </div>
 </div>
-
+<audio id="a01"><source src="a01.mp3" preload=auto></audio>
 <script>
+function ps(){
+	document.getElementById("a01").play();
+	}
 </script>
-
 </body>
 </html>
 
