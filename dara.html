@@ -2,20 +2,28 @@
 <head>
 <style>
 #pic{
-	float:left;
-	width:50%;
+	width:100%;
 	}
 #txt{
 	font-size:100px;
-	float:left;
-	width:50%;
+	width:100%;
 	text-align:center;
 	}
 #txt:hover{
 	color:red;
 	cursor:pointer;
 	}
-	
+@media only screen and (min-width:600px) {
+	#pic{
+		float:left;
+		width:50%;
+		}
+	#txt{
+		float:left;
+		width:50%;
+	}
+  }
+
 </style>
 </head>
 <body>
@@ -24,7 +32,7 @@
 
 <div id=con>
 <div id=pic>
-<img src="p01.jpg		" >
+<img src="p01.jpg" width=100%>
 </div>
 
 <div id=txt onclick="ps()">
