@@ -14,7 +14,7 @@
 	width:100%;
 	text-align:center;
 	}
-#txt:hover{
+a:hover{
 	color:red;
 	cursor:pointer;
 	}
@@ -29,20 +29,32 @@
 		width:50%;
 	}
   }
-
 </style>
 </head>
 <body>
-
+<button>Pages</button>
+<button>Prev</button>
+<button>Next</button>
+<button>Read</button>
 <div id=con>
 <div id=pic>
 <img src="p01.jpg" width=100%>
 </div>
 
 <div id=txt onclick="ps()">
+<a>
 دار
+</a>
 <br>
-دار دار دار
+<a>
+دار
+</a>
+<a> 
+دار
+</a>
+<a> 
+دار
+</a>
 </div>
 </div>
 <audio id="a01"><source src="a01.mp3" preload=auto></audio>
@@ -54,3 +66,18 @@ function ps(){
 </body>
 </html>
 
+<!-- 
+to do:
+----
+read each word separatly
+add more pages
+add buttons for read,next and content
+----
+done:
+----
+add static firsst lesson
+mouseover text color to red
+onclick read text
+font amiri
+responsive designs for portrait and landscape 
+-->
