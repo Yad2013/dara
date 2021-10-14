@@ -1,18 +1,19 @@
-﻿<html>
+<html>
 <head>
 <style>
 @font-face {
     font-family: amiri;
-    src: url('amiri-regular.woff');
+    src: url('res/amiri-regular.woff');
 }
 #pic{
 	width:100%;
 	}
 #txt{
 	font-family:amiri;
-	font-size:150px;
+	font-size:100px;
 	width:100%;
 	text-align:center;
+  direction:rtl;
 	}
 a:hover{
 	color:red;
@@ -33,12 +34,12 @@ a:hover{
 </head>
 <body>
 <button>Pages</button>
-<button>Prev</button>
-<button>Next</button>
+<button onclick="prev()" title="Prev Page">Prev</button>
+<button onclick="next()" title="Next Page">Next</button>
 <button>Read</button>
 <div id=con>
 <div id=pic>
-<img src="p01.jpg" width=100%>
+<img id=imageid src="res/p01.jpg" width=100%>
 </div>
 
 <div id=txt onclick="ps()">
@@ -49,35 +50,98 @@ a:hover{
 <a>
 دار
 </a>
-<a> 
+ ،
+<a>
 دار
 </a>
-<a> 
+ ،
+<a>
 دار
 </a>
 </div>
 </div>
-<audio id="a01"><source src="a01.mp3" preload=auto></audio>
+<audio id="a01"><source src="res/a01.mp3" preload=auto></audio>
+
 <script>
+var i=1;
+var z="p0";
+
 function ps(){
 	document.getElementById("a01").play();
 	}
+
+function next(){
+  if(i>9) z="p"; else z="p0";
+  if(i<19) i++;
+  document.getElementById("imageid").src="res/" + z + i + ".jpg";
+  var t=eng_to_kur(a[i]);
+  document.getElementById("txt").innerHTML=t;
+  }
+  
+function prev(){
+  if(i>9) z="p"; else z="p0";
+  if(i>1) i--;
+  document.getElementById("imageid").src="res/" + z + i + ".jpg";
+  var t=eng_to_kur(a[i]);
+  document.getElementById("txt").innerHTML=t;
+  }
+  
+document.addEventListener("keydown",event => {
+  if (event.key==="ArrowRight"){
+      next();
+    }
+    
+  if (event.key==="ArrowLeft"){
+      prev();
+    }
+  });
+  
+function eng_to_kur(eng){
+  var kur=eng;
+  kur=kur.replaceAll("a","ا");
+  kur=kur.replaceAll("d","د");
+  kur=kur.replaceAll("r","ر");
+  kur=kur.replaceAll("u","و");
+  kur=kur.replaceAll("i","ی");
+  kur=kur.replaceAll("e","ه‌");
+  kur=kur.replaceAll("z","ز");
+  kur=kur.replaceAll(",","،");
+  kur=kur.replaceAll("","");
+  kur=kur.replaceAll("#","<br>");
+  return kur;
+  }
+
+const a=[
+    "nauerok",
+    // lesson 1
+    "dar#dar , dar , dar",
+    "dara#dara , dara , dara",
+    "dara , dara#dar , dar",
+    "dar# dara dari di ,#dari di dara . ",
+    "dau#ui , ui , dau , #daui dara , dau .",
+    "dara#uere dereue , dara#uere , uere .#dara , uere dereue .",
+    "duu dar#dara duu dari di#duu dar ,#duu dari duur duur .",
+    "uazi#zara , zara ,#uere uazi#zuu uere zuu ."
+    ];
+    
 </script>
 </body>
 </html>
 
-<!-- 
-to do:
-----
-read each word separatly
+<!--
+=====
+to do
+=====
 add more pages
-add buttons for read,next and content
-----
-done:
-----
+
+====
+done
+====
+read each word separatly
+add buttons for read, next and content
 add static firsst lesson
 mouseover text color to red
 onclick read text
 font amiri
-responsive designs for portrait and landscape 
+responsive designs for portrait and landscape
 -->
