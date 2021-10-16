@@ -14,11 +14,43 @@
 	width:100%;
 	text-align:center;
   direction:rtl;
+  line-height:150%;
 	}
 a:hover{
 	color:red;
 	cursor:pointer;
 	}
+.bd{
+	font-family:amiri;
+	font-size:100px;
+	width:100%;
+	text-align:right;
+  direction:rtl;
+  line-height:150%;
+  padding:20px;
+	}
+.ft{
+  border:0px red solid;
+	width:100%;
+	text-align:left;
+  direction:ltr;
+  display:flex;
+	}
+.cp{
+	height:120px;
+	}
+.cc{
+	font-size:80px;
+  color:#fff;
+  background-color:#f00;
+  width:300px;
+  height:300px;
+  border-radius:150px;
+  margin:20px;
+  line-height:120%;
+  text-align: center;
+  }
+	
  @media screen and (orientation:landscape) {
 	#pic{
 		float:left;
@@ -29,11 +61,11 @@ a:hover{
 		font-size:100px;
 		width:50%;
 	}
-  }
+ }
 </style>
 </head>
 <body>
-<button>Pages</button>
+<button onclick="toc()" title="Table of contents">Pages</button>
 <button onclick="prev()" title="Prev Page">Prev</button>
 <button onclick="next()" title="Next Page">Next</button>
 <button>Read</button>
@@ -42,48 +74,64 @@ a:hover{
 <img id=imageid src="res/p01.jpg" width=100%>
 </div>
 
-<div id=txt onclick="ps()">
-<a>
+<div id=txt>
+<a onclick="ps('0101')">
 دار
 </a>
 <br>
-<a>
+<a onclick="ps('0101')">
 دار
 </a>
-<a>
+<a onclick="ps('0101')">
 دار
 </a>
-<a>
+<a onclick="ps('0101')">
 دار
 </a>
 </div>
 </div>
-<audio id="a01"><source src="res/a01.mp3" preload=auto></audio>
+<audio id="a0101"><source src="res/a0101.mp3" preload=auto></audio>
 
 <script>
 var i=1;
 var z="p0";
 
-function ps(){
-	document.getElementById("a01").play();
+function ps(id){
+  var aid="a"+id;
+	document.getElementById(aid).play();
 	}
 
 function next(){
   if(i>9) z="p"; else z="p0";
   if(i<19) i++;
   document.getElementById("imageid").src="res/" + z + i + ".jpg";
-  var t=eng_to_kur(a[i]);
+  var t=a[i];
+  t=eng_to_kur(t);
+  t=add_tags(t);
   document.getElementById("txt").innerHTML=t;
   }
   
 function prev(){
   if(i>9) z="p"; else z="p0";
-  if(i>1) i--;
+  if(i>0) i--;
   document.getElementById("imageid").src="res/" + z + i + ".jpg";
-  var t=eng_to_kur(a[i]);
+  var t=a[i];
+  if(i==0) t+=toc();
+  t=eng_to_kur(t);
+  t=add_tags(t);
   document.getElementById("txt").innerHTML=t;
   }
   
+function toc(){
+  var rv="|";
+  for (var j=1;j<a.length;j++){
+    var ta=a[j].split("|");
+    tt=j+"."+ta[0]+"#";
+    rv+=tt;
+    }
+  return rv;
+  }
+
 document.addEventListener("keydown",event => {
   if (event.key==="ArrowRight"){
       next();
@@ -92,10 +140,49 @@ document.addEventListener("keydown",event => {
   if (event.key==="ArrowLeft"){
       prev();
     }
+
+  if (event.key > -1 && event.key < 10){
+      i=event.key;
+      i++;
+      prev();
+    }
   });
-  
+
+function add_tags(t){
+  var rv="";
+  var a=t.split(" ");
+  for (var j=0;j<a.length;j++){
+    k=j+1;
+    var i0=i.toString();
+    var i0=i0.padStart(2,"0");
+    var k0=k.toString();
+    var k0=k0.padStart(2,"0");
+    var w=a[j];
+    console.log(w);
+    var tw="";
+    var lc=w.slice(-1);
+    if(lc=="." || lc=="،" || lc=="!" || lc=="?" || lc=="|") {
+      w=w.slice(0,-1);
+      tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a>"+lc+" ";
+      } else{
+      tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a> ";
+      }
+    rv+="<audio id=a"+i0+k0+"><source src=res/a"+i0+k0+".mp3 preload=auto></audio>"
+    rv+=tw;
+    }
+  var a=rv.split("|");
+  var tt="<div class=tt>"+a[0]+"</div>";
+  var bd="<div class=bd>"+a[1]+"</div>";
+  var cc="<div class=ft><div class=cc>"+a[2]+"</div><div class=cp><img src='res/p"+i0+".jpg'></div></div>";
+  if(i<3) cc="";
+  rv=tt+bd+cc;
+  rv=rv.replaceAll("#","<br>");
+  return rv;
+  }
+
 function eng_to_kur(eng){
   var kur=eng;
+  kur=kur.replaceAll("i^","ێ");
   kur=kur.replaceAll("a","ا");
   kur=kur.replaceAll("d","د");
   kur=kur.replaceAll("r","ر");
@@ -104,22 +191,40 @@ function eng_to_kur(eng){
   kur=kur.replaceAll("e","ه‌");
   kur=kur.replaceAll("z","ز");
   kur=kur.replaceAll(",","،");
+  kur=kur.replaceAll("o","ۆ");
+  kur=kur.replaceAll("~","ئ");
+  kur=kur.replaceAll("n","ن");
+  kur=kur.replaceAll("k","ك");
+  kur=kur.replaceAll("_","ـ");
   kur=kur.replaceAll("","");
-  kur=kur.replaceAll("#","<br>");
+  kur=kur.replaceAll("0","٠");
+  kur=kur.replaceAll("1","١");
+  kur=kur.replaceAll("2","٢");
+  kur=kur.replaceAll("3","٣");
+  kur=kur.replaceAll("4","٤");
+  kur=kur.replaceAll("5","٥");
+  kur=kur.replaceAll("6","٦");
+  kur=kur.replaceAll("7","٧");
+  kur=kur.replaceAll("8","٨");
+  kur=kur.replaceAll("9","٩");
+//  kur=kur.replaceAll("#","<br>");
   return kur;
   }
 
 const a=[
     "nauerok",
     // lesson 1
-    "dar#dar dar dar",
-    "dara#dara dara dara",
-    "dara dara#dar dar",
-    "dar# dara dari di,#dari di dara. ",
-    "dau#ui, ui, dau, #daui dara, dau.",
-    "dara#uere dereue, dara#uere, uere.#dara, uere dereue.",
-    "duu dar#dara duu dari di#duu dar,#duu dari duur duur.",
-    "uazi#zara, zara#uere uazi.#zuu uere, zuu."
+    "dar | dar dar dar|",
+    "dara | dara dara dara|",
+    "|dara dara # dar dar | d # a # r",
+    "dar | dara dari di, # dari di dara. | dari di # i",
+    "dau | ui, ui, dau, # daui dara, dau. | dau # u",
+    "dara | uere dereue, dara # uere, uere. # dara, uere dereue. | uere # e",
+    "duu dar | dara duu dari di # duu dar, # duu dari duur duur. | duu # uu",
+    "uazi | zara, zara # uere uazi. # zuu uere, zuu. | zara # z",
+    "do | dade, do, do. # uere dara, uere, #dade doi zore. # dei, zuu uere, | do # o",
+    "~au | ~ai, ~ai,#doi dade ~aui zore.#~oi, ~oi, dara,#do ~aui ua zore. | ~au#~_",
+    "dade | dade, dade,#uere deri^.#~eue ~azade, doi deui^.#~i^, ~i^, dara.#dade ua di^. | deri^#i^"
     ];
     
 </script>
