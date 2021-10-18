@@ -182,6 +182,7 @@ function add_tags(t){
 
 function eng_to_kur(eng){
   var kur=eng;
+  kur=kur.replaceAll("j","ژ");
   kur=kur.replaceAll("r^","ڕ");
   kur=kur.replaceAll("i^","ێ");
   kur=kur.replaceAll("a","ا");
@@ -226,7 +227,8 @@ const a=[
     "do | dade, do, do. # uere dara, uere, #dade doi zore. # dei, zuu uere, | do # o",
     "~au | ~ai, ~ai,#doi dade ~aui zore.#~oi, ~oi, dara,#do ~aui ua zore. | ~au#~_",
     "dade | dade, dade,#uere deri^.#~eue ~azade, doi deui^.#~i^, ~i^, dara.#dade ua di^. | deri^#i^",
-    "r^au | zerde, zerde ua r^aue,# dei, dei,#ua ~azad r^oi# ~oi, zerde deuer^i^.#zerde dr^e,#zerde zor zor dr^e. | r^au # r^"
+    "r^au | zerde, zerde ua r^aue,# dei, dei,#ua ~azad r^oi# ~oi, zerde deuer^i^.#zerde dr^e,#zerde zor zor dr^e. | r^au # r^",
+    "do r^jaue |- ~azad, ~azad, uere juuri^# ua doi dade r^jaue.# - ~oi, ~eue duu r^oje der^ji^# duu r^oje doi dade der^ji^. | juur # j"
     ];
     
 </script>
