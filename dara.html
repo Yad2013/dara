@@ -126,7 +126,7 @@ function toc(){
   var rv="|";
   for (var j=1;j<a.length;j++){
     var ta=a[j].split("|");
-    tt=j+"."+ta[0]+"#";
+    tt=j+". "+ta[0]+"#";
     rv+=tt;
     }
   return rv;
@@ -198,6 +198,7 @@ function eng_to_kur(eng){
   kur=kur.replaceAll("n","ن");
   kur=kur.replaceAll("k","ك");
   kur=kur.replaceAll("_","ـ");
+  kur=kur.replaceAll("?","؟");
   kur=kur.replaceAll("","");
   kur=kur.replaceAll("0","٠");
   kur=kur.replaceAll("1","١");
@@ -228,7 +229,9 @@ const a=[
     "~au | ~ai, ~ai,#doi dade ~aui zore.#~oi, ~oi, dara,#do ~aui ua zore. | ~au#~_",
     "dade | dade, dade,#uere deri^.#~eue ~azade, doi deui^.#~i^, ~i^, dara.#dade ua di^. | deri^#i^",
     "r^au | zerde, zerde ua r^aue,# dei, dei,#ua ~azad r^oi# ~oi, zerde deuer^i^.#zerde dr^e,#zerde zor zor dr^e. | r^au # r^",
-    "do r^jaue |- ~azad, ~azad, uere juuri^# ua doi dade r^jaue.# - ~oi, ~eue duu r^oje der^ji^# duu r^oje doi dade der^ji^. | juur # j"
+    "do r^jaue |- ~azad, ~azad, uere juuri^# ua doi dade r^jaue.# - ~oi, ~eue duu r^oje der^ji^# duu r^oje doi dade der^ji^. | juur # j",
+  "zrize |- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade. | zrize # i_ ",
+  "dari dri^j | zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere,# ~eu dare dri^je ua r^uuaue. | dri^j # i^_"
     ];
     
 </script>
