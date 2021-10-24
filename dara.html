@@ -51,7 +51,7 @@ a:hover{
   text-align: center;
   }
 	
- @media screen and (orientation:landscape) {
+@media screen and (orientation:landscape) {
 	#pic{
 		float:left;
 		width:50%;
@@ -90,7 +90,7 @@ a:hover{
 </a>
 </div>
 </div>
-<audio id="a0101"><source src="res/t/a0101.mp3" preload=auto></audio>
+<audio id="a0101"><source src="res/a0101.mp3" preload=auto></audio>
 
 <script>
 var i=1;
@@ -103,7 +103,7 @@ function ps(id){
 
 function next(){
   if(i>9) z="p"; else z="p0";
-  if(i<19) i++;
+  if(i<a.length) i++;
   document.getElementById("imageid").src="res/" + z + i + ".jpg";
   var t=a[i];
   t=eng_to_kur(t);
@@ -116,19 +116,28 @@ function prev(){
   if(i>0) i--;
   document.getElementById("imageid").src="res/" + z + i + ".jpg";
   var t=a[i];
-  if(i==0) t+=toc();
   t=eng_to_kur(t);
   t=add_tags(t);
+  if(i==0) t=toc();
   document.getElementById("txt").innerHTML=t;
+  }
+
+function goto(lc){
+  i=lc-1;
+  next();
   }
   
 function toc(){
-  var rv="|";
+  var rv="<div class=bd>";
   for (var j=1;j<a.length;j++){
     var ta=a[j].split("|");
-    tt=j+". "+ta[0]+"#";
+    if(ta[0]=="") ta[0]="dara dara";
+    var t=eng_to_kur(ta[0]);
+    var jk=eng_to_kur(j+"");
+    tt=jk+". <a onclick='goto("+j+")'>"+t+"</a><br>";
     rv+=tt;
     }
+  rv+="</div>";
   return rv;
   }
 
@@ -151,8 +160,9 @@ document.addEventListener("keydown",event => {
 function add_tags(t){
   var rv="";
   var a=t.split(" ");
+  console.log(a);
   for (var j=0;j<a.length;j++){
-    k=j+1;
+    k=j;
     var i0=i.toString();
     var i0=i0.padStart(2,"0");
     var k0=k.toString();
@@ -161,7 +171,7 @@ function add_tags(t){
     console.log(w);
     var tw="";
     var lc=w.slice(-1);
-    if(lc=="." || lc=="،" || lc=="!" || lc=="?" || lc=="|") {
+    if(lc=="."|| lc=="،"|| lc=="!"|| lc=="?"|| lc=="|") {
       w=w.slice(0,-1);
       tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a>"+lc+" ";
       } else{
@@ -173,7 +183,7 @@ function add_tags(t){
   var a=rv.split("|");
   var tt="<div class=tt>"+a[0]+"</div>";
   var bd="<div class=bd>"+a[1]+"</div>";
-  var cc="<div class=ft><div class=cc>"+a[2]+"</div><div class=cp><img src='res/p"+i0+".jpg'></div></div>";
+  var cc="<div class=ft><div class=cc>"+a[2]+"</div><div class=cp><img src='res/p"+i0+".jpg' onload='this.style.opacity=1'></div></div>";
   if(i<3) cc="";
   rv=tt+bd+cc;
   rv=rv.replaceAll("#","<br>");
@@ -200,6 +210,7 @@ function eng_to_kur(eng){
   kur=kur.replaceAll("_","ـ");
   kur=kur.replaceAll("?","؟");
   kur=kur.replaceAll("m","م");
+  kur=kur.replaceAll("b","ب");
   kur=kur.replaceAll("","");
   kur=kur.replaceAll("0","٠");
   kur=kur.replaceAll("1","١");
@@ -217,26 +228,26 @@ function eng_to_kur(eng){
 
 const a=[
     "nauerok",
-    // lesson 1
-    "dar | dar dar dar|",
-    "dara | dara dara dara|",
-    "|dara dara # dar dar | d # a # r",
-    "dar | dara dari di, # dari di dara. | dari di # i",
-    "dau | ui, ui, dau, # daui dara, dau. | dau # u",
-    "dara | uere dereue, dara # uere, uere. # dara, uere dereue. | uere # e",
-    "duu dar | dara duu dari di # duu dar, # duu dari duur duur. | duu # uu",
-    "uazi | zara, zara # uere uazi. # zuu uere, zuu. | zara # z",
-    "do | dade, do, do. # uere dara, uere, #dade doi zore. # dei, zuu uere, | do # o",
-    "~au | ~ai, ~ai,#doi dade ~aui zore.#~oi, ~oi, dara,#do ~aui ua zore. | ~au#~_",
-    "dade | dade, dade,#uere deri^.#~eue ~azade, doi deui^.#~i^, ~i^, dara.#dade ua di^. | deri^#i^",
-    "r^au | zerde, zerde ua r^aue,# dei, dei,#ua ~azad r^oi# ~oi, zerde deuer^i^.#zerde dr^e,#zerde zor zor dr^e. | r^au # r^",
-    "do r^jaue |- ~azad, ~azad, uere juuri^# ua doi dade r^jaue.# - ~oi, ~eue duu r^oje der^ji^# duu r^oje doi dade der^ji^. | juur # j",
-  "zrize |- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade. | zrize # i_ ",
-  "dari dri^j | zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere,# ~eu dare dri^je ua r^uuaue. | dri^j # i^_",
-  "~audan | zara u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n. | ~audan # n",
-  "nazi^ | daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~i^ue zor ~azan. # zuu uerneue, zuu. | nazdar # n_",
-  "dar der^ui^nm | - daie, ua ~em duu dare der^ui^nm, # duai ~eue, ~auian dedem, # - uere nazi^, uere, # ua der^oin, zuu uere # - ua di^m daie, ua di^m, # ~em duu dare der^ui^nm, # duai ~eue di^m | dar der^ui^nm # m",
-  "mer^e zerd | ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^meue mame. # ua der^om ~aui dedem, daui ~eue di^meue, | mer^i mn # m_"
+    "dar| dar dar dar|",
+    "dara| dara dara dara|",
+    "|dara dara# dar dar| d# a# r",
+    "dar| dara dari di,# dari di dara.| dari di# i",
+    "dau| ui, ui, dau,# daui dara, dau.| dau# u",
+    "dara| uere dereue, dara# uere, uere.# dara, uere dereue.| uere# e",
+    "duu dar| dara duu dari di# duu dar,# duu dari duur duur.| duu# uu",
+    "uazi| zara, zara# uere uazi.# zuu uere, zuu.| zara# z",
+    "do| dade, do, do.# uere dara, uere,# dade doi zore.# dei, zuu uere,| do# o",
+    "~au| ~ai, ~ai,#doi dade ~aui zore.#~oi, ~oi, dara,#do ~aui ua zore.| ~au#~_",
+    "dade| dade, dade,#uere deri^.#~eue ~azade, doi deui^.#~i^, ~i^, dara.#dade ua di^.| deri^#i^",
+    "r^au| zerde, zerde ua r^aue,# dei, dei,#ua ~azad r^oi# ~oi, zerde deuer^i^.#zerde dr^e,#zerde zor zor dr^e.| r^au# r^",
+    "do r^jaue|- ~azad, ~azad, uere juuri^# ua doi dade r^jaue.# - ~oi, ~eue duu r^oje der^ji^# duu r^oje doi dade der^ji^.| juur# j",
+  "zrize|- ~ai, ~euei zrizei diue,# zrizei ~azad?# - uere, uere, dara,# ~eu zrize ziue zrizei ~azade?# ~ei, ~ei, ~eue zrizei ~azade.| zrize# i_ ",
+  "dari dri^j| zara, uere ~i^re,# ua ~eu dare dri^je r^uuaue.# dei zara, zuu uere,# ~eu dare dri^je ua r^uuaue.| dri^j# i^_",
+  "~audan| zara u ~azad ua der^on,# ~aui ~eu duu dare deden.# ~eu duu dare zuu der^ui^n,# zuu zuu ~au dedri^n.| ~audan# n",
+  "nazi^| daie ~eue neuzade.# ua der^oine nau ~eu darane.# der^oin dar der^ui^nin.# ~oi, nazi^, dar der^ui^nn?# diare ~i^ue zor ~azan.# zuu uerneue, zuu.| nazdar# n_",
+  "dar der^ui^nm| - daie, ua ~em duu dare der^ui^nm,# duai ~eue, ~auian dedem,# - uere nazi^, uere,# ua der^oin, zuu uere# - ua di^m daie, ua di^m,# ~em duu dare der^ui^nm,# duai ~eue di^m| dar der^ui^nm# m",
+  "mer^e zerd| ma, ma, ma,# mame, mame,# ~eme mer^e zerde,# mer^e zerdi mn# mn di^meue mame.# ua der^om ~aui dedem, daui ~eue di^meue,| mer^i mn# m_",
+  "mi^uji naiab| - ~emeie mi^uj, mi^uji naiab.# - mam zorab, mam zorab,# mer^o, mer^o, mi^ujm deui^.# - zuu uere zeineb, zuu,# dei uere, ~emeie mi^uji naiab| zeineb# b"
     ];
     
 </script>
