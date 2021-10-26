@@ -193,6 +193,7 @@ function add_tags(t){
 function eng_to_kur(eng){
   var kur=eng;
   kur=kur.replaceAll("j","ژ");
+  kur=kur.replaceAll("s^","ش");
   kur=kur.replaceAll("r^","ڕ");
   kur=kur.replaceAll("i^","ێ");
   kur=kur.replaceAll("a","ا");
@@ -252,8 +253,10 @@ const a=[
   "mi^uji naiab| - ~emeie mi^uj, mi^uji naiab.# - mam zorab, mam zorab,# mer^o, mer^o, mi^ujm deui^.# - zuu uere zeineb, zuu,# dei uere, ~emeie mi^uji naiab| zeineb# b",
   "bebei zeineb | zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame. | bebe # b_",
   "baran debari^t | ~ai neuzad, ua baran debari^t, # ~em_r^o ~au zor debi^t, # be baran dar zuu der^ui^t, # bnuar^e mam zorab, ua der^uat # der^uat bo bazar^, mi^uj di^ni^t | baran debari^t # t",
-  "teiare | bnuar^n, teiare, teiare. # teiari^i uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue? | teiare # t_",
-  "uus be | uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde. | us be # s"
+  "teiare | bnuar^n, teiare, teiare. # teiarei uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue? | teiare # t_",
+  "uus be | uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde. | us be # s",
+  "si^u | ~azad, si^ si^um bo berdeue. # r^aueste nesrin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^ | si^u # s_",
+  "r^oj bas^ | r^ojbas^ babe. # r^oj bas^, nesrin. # babe ~eue der^oi? # mnis^ bi^m? # nesrin, ~i^sta bo ~is^ der^om # ~i^uari^ duai ~is^ di^meue, # ~eusa der^oin bo dereue. | r^ojbas^ # s^"
     ];
 </script>
 </body>
@@ -264,7 +267,8 @@ const a=[
 to do
 =====
 add more pages
-
+add sound
+make buttons work
 ====
 done
 ====
