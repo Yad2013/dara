@@ -1,5 +1,7 @@
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @font-face {
     font-family: amiri;
@@ -10,7 +12,7 @@
 	}
 #txt{
 	font-family:amiri;
-	font-size:100px;
+	font-size:40px;
 	width:100%;
 	text-align:center;
   direction:rtl;
@@ -21,8 +23,6 @@ a:hover{
 	cursor:pointer;
 	}
 .bd{
-	font-family:amiri;
-	font-size:100px;
 	width:100%;
 	text-align:right;
   direction:rtl;
@@ -37,18 +37,28 @@ a:hover{
   display:flex;
 	}
 .cp{
-	height:120px;
+	height:40px;
 	}
 .cc{
-	font-size:80px;
   color:#fff;
   background-color:#00f;
-  width:300px;
-  height:300px;
-  border-radius:150px;
+  width:150px;
+  height:150px;
+  border-radius:75px;
   margin:20px;
   line-height:120%;
   text-align: center;
+  }
+#ftb{
+	width:100%;
+	text-align:center;
+  line-height:150%;
+  position:fixed;
+  bottom:0;
+	}
+button{
+  width:60px;
+  height:40px;
   }
 	
 @media screen and (orientation:landscape) {
@@ -58,17 +68,24 @@ a:hover{
 		}
 	#txt{
 		float:left;
-		font-size:100px;
+		font-size:60px;
 		width:50%;
+    line-height:150%;
 	}
+  .cc{
+    color:#fff;
+    background-color:#00f;
+    width:200px;
+    height:200px;
+    border-radius:150px;
+    margin:20px;
+    line-height:120%;
+    text-align: center;
+    }
  }
 </style>
 </head>
 <body>
-<button onclick="toc()" title="Table of contents">Pages</button>
-<button onclick="prev()" title="Prev Page">Prev</button>
-<button onclick="next()" title="Next Page">Next</button>
-<button>Read</button>
 <div id=con>
 <div id=pic>
 <img id=imageid src="res/p01.jpg" width=100%>
@@ -89,6 +106,20 @@ a:hover{
 دار
 </a>
 </div>
+</div>
+<div id=ftb>
+  <button onclick="goto(0)">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path></svg>
+  </button>
+  <button onclick="">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M8 5v14l11-7z"></path></svg>
+  </button>
+  <button onclick="prev()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+  </button>
+  <button onclick="next()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"></path></svg>
+  </button>
 </div>
 <audio id="a0101"><source src="res/a0101.mp3" preload=auto></audio>
 
@@ -183,8 +214,9 @@ function add_tags(t){
   var a=rv.split("|");
   var tt="<div class=tt>"+a[0]+"</div>";
   var bd="<div class=bd>"+a[1]+"</div>";
-  var cc="<div class=ft><div class=cc>"+a[2]+"</div><div class=cp><img src='res/p"+i0+".jpg' onload='this.style.opacity=1'></div></div>";
-  if(i<3) cc="";
+  var cc="<div class=ft><div class=cc>"+a[2]+"</div>"; //<div class=cp><img src='res/p"+i0+".jpg' width=100px></div></div>";
+  if(i<3)
+  cc="";
   rv=tt+bd+cc;
   rv=rv.replaceAll("#","<br>");
   return rv;
@@ -214,6 +246,7 @@ function eng_to_kur(eng){
   kur=kur.replaceAll("b","ب");
   kur=kur.replaceAll("t","ت");
   kur=kur.replaceAll("s","س");
+  kur=kur.replaceAll("p","پ");
   kur=kur.replaceAll("","");
   kur=kur.replaceAll("0","٠");
   kur=kur.replaceAll("1","١");
@@ -249,7 +282,7 @@ const a=[
   "~audan| zara u ~azad ua der^on,# ~aui ~eu duu dare deden.# ~eu duu dare zuu der^ui^n,# zuu zuu ~au dedri^n.| ~audan# n",
   "nazi^| daie ~eue neuzade.# ua der^oine nau ~eu darane.# der^oin dar der^ui^nin.# ~oi, nazi^, dar der^ui^nn?# diare ~i^ue zor ~azan.# zuu uerneue, zuu.| nazdar# n_",
   "dar der^ui^nm| - daie, ua ~em duu dare der^ui^nm,# duai ~eue, ~auian dedem,# - uere nazi^, uere,# ua der^oin, zuu uere# - ua di^m daie, ua di^m,# ~em duu dare der^ui^nm,# duai ~eue di^m| dar der^ui^nm# m",
-  "mer^e zerd| ma, ma, ma,# mame, mame,# ~eme mer^e zerde,# mer^e zerdi mn# mn di^meue mame.# ua der^om ~aui dedem, daui ~eue di^meue,| mer^i mn# m_",
+  "mer^e zerd| ma, ma, ma,# mame, mame,# ~eme mer^e zerde,# mer^e zerdi mn# mn di^_meue mame.# ua der^om ~aui dedem, # duai ~eue di^_meue,| mer^i mn# m_",
   "mi^uji naiab| - ~emeie mi^uj, mi^uji naiab.# - mam zorab, mam zorab,# mer^o, mer^o, mi^ujm deui^.# - zuu uere zeineb, zuu,# dei uere, ~emeie mi^uji naiab| zeineb# b",
   "bebei zeineb | zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame. | bebe # b_",
   "baran debari^t | ~ai neuzad, ua baran debari^t, # ~em_r^o ~au zor debi^t, # be baran dar zuu der^ui^t, # bnuar^e mam zorab, ua der^uat # der^uat bo bazar^, mi^uj di^ni^t | baran debari^t # t",
@@ -257,7 +290,10 @@ const a=[
   "uus be | uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde. | us be # s",
   "si^u | ~azad, si^ si^um bo berdeue. # r^aueste nesrin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^ | si^u # s_",
   "r^oj bas^ | r^ojbas^ babe. # r^oj bas^, nesrin. # babe ~eue der^oi? # mnis^ bi^m? # nesrin, ~i^sta bo ~is^ der^om # ~i^uari^ duai ~is^ di^meue, # ~eusa der^oin bo dereue. | r^ojbas^ # s^",
-  "s^uus^e s^ir | bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om deis^armeue, # deidem beuei bidozi^teue. | s^uus^e # s^_"
+  "s^uus^e s^ir | bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om deis^armeue, # deidem beuei bidozi^teue. | s^uus^e # s^_",
+  "s^er^e m_ris^k | ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be~i^ue. | m_ris^k # k",
+  "keui mn | daike, daike, # ua tutke suur u keui mn iari deken. # kut, kut, tutke suur, # nekei ~azari keui mn bdei. # ~ai, ua keui mn tutke suuri r^auna, # keui mn keui^ki ~azaie. # ks^, ks^, keueke, bese uazbi^ne. | keu # k",
+"iarii top | nesrin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~emr^o duu tip iari dekein, # duu deste iari be iek top dekein. | top # p"
     ];
 </script>
 </body>
