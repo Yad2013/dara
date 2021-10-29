@@ -134,8 +134,8 @@ function ps(id){
 	}
 
 function next(){
-  if(i>9) z="p"; else z="p0";
   if(i<a.length) i++;
+  if(i>9) z="p"; else z="p0";
   document.getElementById("imageid").src="res/" + z + i + ".jpg";
   var t=a[i];
   t=eng_to_kur(t);
@@ -144,8 +144,8 @@ function next(){
   }
   
 function prev(){
-  if(i>9) z="p"; else z="p0";
   if(i>0) i--;
+  if(i>9) z="p"; else z="p0";
   document.getElementById("imageid").src="res/" + z + i + ".jpg";
   var t=a[i];
   t=eng_to_kur(t);
