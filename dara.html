@@ -11,57 +11,56 @@
 	width:100%;
 	}
 #txt{
-	font-family:amiri;
+  font-family:amiri;
 	font-size:40px;
 	width:100%;
 	text-align:center;
- direction:rtl;
- line-height:150%;
+  direction:rtl;
+  line-height:150%;
 	}
 a:hover{
 	color:red;
 	cursor:pointer;
 	}
 .bd{
-	width:100%;
 	text-align:right;
- direction:rtl;
- line-height:150%;
- padding:20px;
+  direction:rtl;
+  line-height:150%;
+  padding:10px;
 	}
 .ft{
- border:0px red solid;
-	width:100%;
-	text-align:left;
- direction:ltr;
- display:flex;
+  border:0px red solid;
+  width:100%;
+  text-align:left;
+  direction:ltr;
+  display:flex;
 	}
 .cp{
 	height:40px;
 	}
 .cc{
- color:#fff;
- background-color:#00f;
- width:150px;
- height:150px;
- border-radius:75px;
- margin:20px;
- line-height:120%;
- text-align: center;
+  color:#fff;
+  background-color:#00f;
+  width:150px;
+  height:150px;
+  border-radius:75px;
+  margin:20px;
+  line-height:170%;
+  text-align: center;
  }
 #ftb{
-	width:100%;
-	text-align:center;
- line-height:150%;
- position:fixed;
- bottom:4px;
- transition: bottom 0.3s;
+  width:100%;
+  text-align:center;
+  line-height:150%;
+  position:fixed;
+  bottom:4px;
+  transition: bottom 0.3s;
 	}
 button{
- width:60px;
- height:40px;
- border-radius:4px;
- border:1px solid #aaa;
+  width:60px;
+  height:40px;
+  border-radius:4px;
+  border:1px solid #aaa;
  }
 button:hover{
   background:#ddd;
@@ -76,18 +75,18 @@ button:hover{
 		float:left;
 		font-size:60px;
 		width:50%;
- line-height:150%;
-	}
+    line-height:150%;
+	  }
  .cc{
- color:#fff;
- background-color:#00f;
- width:200px;
- height:200px;
- border-radius:150px;
- margin:20px;
- line-height:120%;
- text-align: center;
- }
+   color:#fff;
+   background-color:#00f;
+   width:200px;
+   height:200px;
+   border-radius:150px;
+   margin:20px;
+   line-height:120%;
+   text-align: center;
+   }
  }
 </style>
 </head>
@@ -264,15 +263,15 @@ function play_lesson(){
 //    }
   }
 
-var prevScrollpos = window.pageYOffset;
+var prev_scroll_pos = window.pageYOffset;
 window.onscroll = function() {
- var currentScrollPos = window.pageYOffset;
- if (prevScrollpos > currentScrollPos) {
+ var current_scroll_pos = window.pageYOffset;
+ if (prev_scroll_pos > current_scroll_pos) {
  document.getElementById("ftb").style.bottom = "4px";
  } else {
  document.getElementById("ftb").style.bottom = "-50px";
  }
- prevScrollpos = currentScrollPos;
+ prev_scroll_pos = current_scroll_pos;
 }
 
 function eng_to_kur(eng){
@@ -334,13 +333,13 @@ const a=[
  "dari+dri^j| zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere, # ~eu dare dri^je ua r^uuaue.| dri^j # i^_",
  "~audan| zara+u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n.| ~audan # n",
  "nazi^| daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~_i^ue zor ~azan. # zuu uerneue, zuu.| nazdar # n_",
- "dar+der^ui^nm| - daie, ua ~em duu dare der^ui^nm, # duai ~eue, ~auian dedem, # - uere nazi^, uere, # ua der^oin, zuu uere # - ua di^m daie, ua di^m, # ~em duu dare der^ui^nm, # duai ~eue di^m| dar der^ui^nm # m",
- "mer^e+zerd| ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^_meue mame. # ua der^om ~aui dedem, # duai ~eue di^_meue,| mer^i mn # m_",
+ "dar+der^ui^nm| - daie, ua ~em duu dare der^ui^nm, # duai ~eue, ~auian dedem, # - uere nazi^, uere, # ua der^oin, zuu uere # - ua di^m daie, ua di^m, # ~em duu dare der^ui^nm, # duai ~eue di^m| der^ui^nm # m",
+ "mer^e+zerd| ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^_meue mame. # ua der^om ~aui dedem, # duai ~eue di^_meue,| mer^ # m_",
  "mi^uji+naiab| - ~emeie mi^uj, mi^uji naiab. # - mam zorab, mam zorab, # mer^o, mer^o, mi^ujm deui^. # - zuu uere zeineb, zuu, # dei uere, ~emeie mi^uji naiab| zeineb # b",
  "bebei+zeineb| zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame.| bebe # b_",
- "baran+debari^t| ~ai neuzad, ua baran debari^t, # ~em_r^o ~au zor debi^t, # be baran dar zuu der^ui^t, # bnuar^e mam zorab, ua der^uat # der^uat bo bazar^, mi^uj di^ni^t| baran debari^t # t",
+ "baran+debari^t| ~ai neuzad, ua baran debari^t, # ~em_r^o ~au zor debi^t, # be baran dar zuu der^ui^t, # bnuar^e mam zorab, ua der^uat # der^uat bo bazar^, mi^uj di^ni^t| debari^t # t",
  "teiare| bnuar^n, teiare, teiare. # teiarei uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue?| teiare # t_",
- "uus+be| uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus+be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde.| us be # s",
+ "uus+be| uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus+be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde.| us # s",
  "si^u| ~azad, si^ si^um bo berdeue. # r^aueste nes_rin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^| si^u # s_",
  "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ bi^m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
  "s^uus^e+s^ir| bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue.| s^uus^e # s^_",
