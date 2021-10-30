@@ -54,7 +54,7 @@ a:hover{
 	text-align:center;
  line-height:150%;
  position:fixed;
- bottom:0;
+ bottom:4px;
  transition: bottom 0.3s;
 	}
 button{
@@ -63,6 +63,9 @@ button{
  border-radius:4px;
  border:1px solid #aaa;
  }
+button:hover{
+  background:#ddd;
+  }
 	
 @media screen and (orientation:landscape) {
 	#pic{
@@ -115,7 +118,7 @@ button{
  <button onclick="gototoc()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path></svg>
  </button>
- <button onclick="">
+ <button onclick="play_lesson()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M8 5v14l11-7z"></path></svg>
  </button>
  <button onclick="prev()">
@@ -132,7 +135,7 @@ var i=1;
 var z="p0";
 
 function ps(id){
- var aid="a"+id;
+  var aid="a"+id;
 	document.getElementById(aid).play();
 	}
 
@@ -203,25 +206,25 @@ function add_tags(t){
  var a=t.split(" ");
  var k=0;
  console.log(a);
-// for (var j=0;j<a.length;j++){
  for (j in a){
- var i0=i.toString();
- var i0=i0.padStart(2,"0");
- var k0=k.toString();
- var k0=k0.padStart(2,"0");
- var w=a[j];
- console.log(w);
- var tw="";
- var lc=w.slice(-1);
- if(lc=="."|| lc=="،"|| lc=="!"|| lc=="؟"|| lc=="|") {
- w=w.slice(0,-1);
- tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a>"+lc+" ";
- } else{
- tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a> ";
- }
- rv+="<audio id=a"+i0+k0+"><source src=res/t/a"+i0+k0+".mp3 preload=auto></audio>"
- rv+=tw;
- if(a[j]!="|" && a[j]!="#" && a[j]!="-") k++
+   var i0=i.toString();
+   var i0=i0.padStart(2,"0");
+   var k0=k.toString();
+   var k0=k0.padStart(2,"0");
+   var w=a[j];
+   var tw="";
+   var lc=w.slice(-1);
+   if(lc=="."|| lc=="،"|| lc=="!"|| lc=="؟"|| lc=="|") {
+     w=w.slice(0,-1);
+     tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a>"+lc+" ";
+    } else{
+     tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a> ";
+    }
+   console.log(`j:${j}, k:${k}, w:${w}:`);
+   if(w=="|" || w=="#" || w=="-" || w==" ") tw=w+" ";
+   rv+="<audio id=a"+i0+k0+"><source src=res/t/a"+i0+k0+".mp3 preload=auto></audio>"
+   rv+=tw;
+   if(w!="|" && w!="#" && w!="-") k++
  }
  var a=rv.split("|");
  var tt="<div class=tt>"+a[0]+"</div>";
@@ -234,12 +237,38 @@ function add_tags(t){
  rv=rv.replaceAll("+"," ");
  return rv;
  }
+ 
+function play_lesson(){
+  var aa=document.getElementsByTagName("audio");
+  var c=aa.length;
+  var k=0;
+  var kp=0;
+//  for(var k=0;k<aa.length;k++){
+  var timer=setInterval(function(){
+    var i0=i.toString();
+    var i0=i0.padStart(2,"0");
+    var k0=k.toString();
+    var k0=k0.padStart(2,"0");
+    if (k>0) kp=k-1;
+    var k1=kp.toString();
+    var k1=k1.padStart(2,"0");
+    if(k<aa.length) {
+      document.getElementById("w"+i0+k1).style.color="";
+      document.getElementById("w"+i0+k0).style.color="#f00";
+      ps(""+i0+k0);
+      }
+    if(k==aa.length) clearInterval(timer);
+    console.log(k);
+    k++;
+    }, 1300);
+//    }
+  }
 
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
  var currentScrollPos = window.pageYOffset;
  if (prevScrollpos > currentScrollPos) {
- document.getElementById("ftb").style.bottom = "0";
+ document.getElementById("ftb").style.bottom = "4px";
  } else {
  document.getElementById("ftb").style.bottom = "-50px";
  }
@@ -288,36 +317,37 @@ function eng_to_kur(eng){
 
 const a=[
  "nauerok",
- "dar | dar dar dar |",
- "dara | dara dara dara |",
- "| dara dara # dar dar | d # a # r",
- "dar | dara dari di, # dari di dara. | dari+di # i",
- "dau | ui, ui, dau, # daui dara, dau. | dau # u",
- "dara| uere dereue, dara # uere, uere. # dara, uere dereue. | uere # e",
- "duu+dar| dara duu dari di # duu dar, # duu dari duur duur. | duu # uu",
- "uazi| zara, zara # uere uazi. # zuu uere, zuu. | zara # z",
- "do| dade, do, do. # uere dara, uere, # dade doi zore. # dei, zuu uere, | do # o",
- "~au| ~ai, ~ai, #doi dade ~aui zore. #~oi, ~oi, dara, #do ~aui ua zore. | ~au #~_",
- "dade| dade, dade, # uere deri^. # ~eue ~azade, doi deui^. # ~i^, ~i^, dara. # dade ua di^. | deri^ # i^",
- "r^au| zerde, zerde ua r^aue, # dei, dei, # ua ~azad r^oi # ~oi, zerde deuer^i^. # zerde dr^e, # zerde zor zor dr^e. | r^au # r^",
- "do+r^jaue|- ~azad, ~azad, uere juuri^ # ua doi dade r^jaue. # - ~oi, ~eue duu r^oje der^ji^ # duu r^oje doi dade der^ji^. | juur # j",
- "zrize|- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade. | zrize # i_ ",
- "dari+dri^j| zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere, # ~eu dare dri^je ua r^uuaue. | dri^j # i^_",
- "~audan| zara u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n. | ~audan # n",
- "nazi^| daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~_i^ue zor ~azan. # zuu uerneue, zuu. | nazdar # n_",
+ "dar| dar dar dar|",
+ "dara| dara dara dara|",
+ "| dara dara # dar dar| d # a # r",
+ "dar| dara dari di, # dari di dara.| dari+di # i",
+ "dau| ui, ui, dau, # daui dara, dau.| dau # u",
+ "dara| uere dereue, dara # uere, uere. # dara, uere dereue.| uere # e",
+ "duu+dar| dara duu dari di # duu dar, # duu dari duur duur.| duu # uu",
+ "uazi| zara, zara # uere uazi. # zuu uere, zuu.| zara # z",
+ "do| dade, do, do. # uere dara, uere, # dade doi zore. # dei, zuu uere,| do # o",
+ "~au| ~ai, ~ai, #doi dade ~aui zore. #~oi, ~oi, dara, #do ~aui ua zore.| ~au #~_",
+ "dade| dade, dade, # uere deri^. # ~eue ~azade, doi deui^. # ~i^, ~i^, dara. # dade ua di^.| deri^ # i^",
+ "r^au| zerde, zerde ua r^aue, # dei, dei, # ua ~azad r^oi # ~oi, zerde deuer^i^. # zerde dr^e, # zerde zor zor dr^e.| r^au # r^",
+ "do+r^jaue|- ~azad, ~azad, uere juuri^ # ua doi dade r^jaue. # - ~oi, ~eue duu r^oje der^ji^ # duu r^oje doi dade der^ji^.| juur # j",
+ "zrize|- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade.| zrize # i_ ",
+ "dari+dri^j| zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere, # ~eu dare dri^je ua r^uuaue.| dri^j # i^_",
+ "~audan| zara+u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n.| ~audan # n",
+ "nazi^| daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~_i^ue zor ~azan. # zuu uerneue, zuu.| nazdar # n_",
  "dar+der^ui^nm| - daie, ua ~em duu dare der^ui^nm, # duai ~eue, ~auian dedem, # - uere nazi^, uere, # ua der^oin, zuu uere # - ua di^m daie, ua di^m, # ~em duu dare der^ui^nm, # duai ~eue di^m| dar der^ui^nm # m",
- "mer^e+zerd| ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^_meue mame. # ua der^om ~aui dedem, # duai ~eue di^_meue, | mer^i mn # m_",
+ "mer^e+zerd| ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^_meue mame. # ua der^om ~aui dedem, # duai ~eue di^_meue,| mer^i mn # m_",
  "mi^uji+naiab| - ~emeie mi^uj, mi^uji naiab. # - mam zorab, mam zorab, # mer^o, mer^o, mi^ujm deui^. # - zuu uere zeineb, zuu, # dei uere, ~emeie mi^uji naiab| zeineb # b",
- "bebei+zeineb | zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame. | bebe # b_",
- "baran+debari^t | ~ai neuzad, ua baran debari^t, # ~em_r^o ~au zor debi^t, # be baran dar zuu der^ui^t, # bnuar^e mam zorab, ua der^uat # der^uat bo bazar^, mi^uj di^ni^t | baran debari^t # t",
- "teiare | bnuar^n, teiare, teiare. # teiarei uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue? | teiare # t_",
- "uus+be | uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde. | us be # s",
- "si^u | ~azad, si^ si^um bo berdeue. # r^aueste nes_rin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^ | si^u # s_",
- "r^oj+bas^ | r^ojbas^ babe. # r^oj bas^, nes_rin. # babe ~eue der^oi? # mnis^ bi^m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue. | r^ojbas^ # s^",
- "s^uus^e+s^ir | bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue. | s^uus^e # s^_",
- "s^er^e+m_ris^k | ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue. | m_ris^k # k",
- "keui+mn | daike, daike, # ua tutke suur u keui mn iari deken. # kut, kut, tutke suur, # nekei ~azari keui mn bdei. # ~ai, ua keui mn tutke suuri r^auna, # keui mn keui^ki ~azaie. # ks^, ks^, keueke, bese uazbi^ne. | keu # k",
-"iarii+top | nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu tip iari dekein, # duu deste iari be iek top dekein. | top # p"
+ "bebei+zeineb| zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame.| bebe # b_",
+ "baran+debari^t| ~ai neuzad, ua baran debari^t, # ~em_r^o ~au zor debi^t, # be baran dar zuu der^ui^t, # bnuar^e mam zorab, ua der^uat # der^uat bo bazar^, mi^uj di^ni^t| baran debari^t # t",
+ "teiare| bnuar^n, teiare, teiare. # teiarei uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue?| teiare # t_",
+ "uus+be| uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus+be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde.| us be # s",
+ "si^u| ~azad, si^ si^um bo berdeue. # r^aueste nes_rin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^| si^u # s_",
+ "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ bi^m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
+ "s^uus^e+s^ir| bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue.| s^uus^e # s^_",
+ "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
+ "keui+mn| daike, daike, # ua tutke suur+u keui mn iari deken. # kut, kut, tutke suur, # nekei ~azari keui mn bdei. # ~ai, ua keui mn tutke suuri r^auna, # keui mn keui^ki ~azaie. # ks^, ks^, keueke, bese uazbi^ne.| keu # k",
+"iarii+top| nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu tip iari dekein, # duu deste iari be iek top dekein.| top # p",
+"ps^e+spi| ps^e spi, ps^, ps^, ps^. # miau, miau. # uere pi^s^eue, mer^o. # ~em penir+u nane dedem be to. # miau, miau. # zuu uere, ps^e spi, # to ps^ei mni, netrsi.| ps^e # p_"
  ];
 </script>
 </body>
