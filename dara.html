@@ -29,17 +29,17 @@ a:hover{
   line-height:150%;
   padding:10px;
 	}
-.ft{
+#ft{
   border:0px red solid;
   width:100%;
   text-align:left;
   direction:ltr;
   display:flex;
 	}
-.cp{
+#cp{
 	height:40px;
 	}
-.cc{
+#cc{
   color:#fff;
   background-color:#00f;
   width:150px;
@@ -87,7 +87,7 @@ button:hover{
     border-radius:150px;
     margin:20px;
     font-size:60px;
-    line-height:160%;
+    line-height:170%;
     text-align: center;
     }
  }
@@ -120,39 +120,41 @@ button:hover{
 
 <script>
 const a=[
- "nauerok|||40",
- "dar| dar dar dar||80",
- "dara| dara dara dara||70",
- "| dara dara # dar dar| d # a # r|60",
- "dar| dara dari di, # dari di dara.| dari+di # i|50",
- "dau| ui, ui, dau, # daui dara, dau.| dau # u|50",
- "dara| uere dereue, dara # uere, uere. # dara, uere dereue.| uere # e|50",
- "duu+dar| dara duu dari di # duu dar, # duu dari duur duur.| duu # uu|40",
- "uazi| zara, zara # uere uazi. # zuu uere, zuu.| zara # z|40",
- "do| dade, do, do. # uere dara, uere, # dade doi zore. # dei, zuu uere,| do # o|40",
- "~au| ~ai, ~ai, #doi dade ~aui zore. #~oi, ~oi, dara, #do ~aui ua zore.| ~au #~_|40",
- "dade| dade, dade, # uere deri^. # ~eue ~azade, doi deui^. # ~i^, ~i^, dara. # dade ua di^.| deri^ # i^|40",
- "r^au| zerde, zerde ua r^aue, # dei, dei, # ua ~azad r^oi # ~oi, zerde deuer^i^. # zerde dr^e, # zerde zor zor dr^e.| r^au # r^|40",
- "do+r^jaue|- ~azad, ~azad, uere juuri^ # ua doi dade r^jaue. # - ~oi, ~eue duu r^oje der^ji^ # duu r^oje doi dade der^ji^.| juur # j|40",
- "zrize|- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade.| zrize # i_ |40",
- "dari+dri^j| zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere, # ~eu dare dri^je ua r^uuaue.| dri^j # i^_|40",
- "~audan| zara+u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n.| ~audan # n|40",
- "nazi^| daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~_i^ue zor ~azan. # zuu uerneue, zuu.| nazi^ # n_|40",
- "dar+der^ui^_n_m| - daie, ua ~em duu dare der^ui^_n_m, # duai ~eue, ~auian dedem, # - uere nazi^, uere, # ua der^oin, zuu uere # - ua di^_m daie, ua di^_m, # ~em duu dare der^ui^_n_m, # duai ~eue di^_m.| der^ui^_n_m # m|40",
- "mer^e+zerd| ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^_meue mame. # ua der^om ~aui dedem, # duai ~eue di^_meue,| mer^ # m_|40",
- "mi^uji+naiab| - ~emeie mi^uj, mi^uji naiab. # - mam zorab, mam zorab, # mer^o, mer^o, mi^ujm deui^. # - zuu uere zeineb, zuu, # dei uere, ~emeie mi^uji naiab.| zeineb # b|40",
- "bebei+zeineb| zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame.| babe # b_|40",
- "baran+debari^t| ~ai neuzad, ua baran debari^t. # ~em_r^o ~au zor debi^t. # be baran dar zuu der^ui^t. # bnuar^e mam zorab ua der^uat, # der^uat bo bazar^ mi^uj di^ni^t.| debari^t # t|40",
- "teiare| bnuar^n, teiare, teiare. # teiarei uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue?| teiare # t_|40",
- "uus+be| uus, uus, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # uus+be dara, uus, uazbi^ne, # bes ~euende ~azari teir bde.| us # s|40",
- "si^u| ~azad, si^ si^um bo berdeue. # r^aueste nes_rin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^.| si^u # s_|40",
- "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ bi^m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^|40",
- "s^uus^e+s^ir| bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue.| s^uus^e # s^_|40",
- "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k|40",
- "keui+mn| daike, daike, # ua tutke suur+u keui mn iari deken. # kut, kut, tutke suur, # nekei ~azari keui mn bdei. # ~ai, ua keui mn tutke suuri r^auna, # keui mn keui^ki ~azaie. # ks^, ks^, keueke, bese uazbi^ne.| keu # k|40",
-"iarii+top| nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu tip iari dekein, # duu deste iari be iek top dekein.| top # p|40",
-"ps^e+spi| ps^e spi, ps^, ps^, ps^. # miau, miau. # uere pi^s^eue, mer^o. # ~em penir+u nane dedem be to. # miau, miau. # zuu uere, ps^e spi, # to ps^ei mni, netrsi.| ps^e # p_"
+ "nauerok||",
+ "dar| dar dar dar|",
+ "dara| dara dara dara|",
+ "| dara dara # dar dar| d # a # r",
+ "dar| dara dari di, # dari di dara.| dari+di # i",
+ "dau| ui, ui, dau, # daui dara, dau.| dau # u",
+ "dara| uere dereue, dara # uere, uere. # dara, uere dereue.| uere # e",
+ "duu+dar| dara duu dari di # duu dar, # duu dari duur duur.| duu # uu",
+ "uazi| zara, zara # uere uazi. # zuu uere, zuu.| zara # z",
+ "do| dade, do, do. # uere dara, uere, # dade doi zore. # dei, zuu uere.| do # o",
+ "~au| ~ai, ~ai, #doi dade ~aui zore. #~oi, ~oi, dara, #do ~aui ua zore.| ~au #~_",
+ "dade| dade, dade, # uere deri^. # ~eue ~azade, doi deui^. # ~i^, ~i^, dara. # dade ua di^.| deri^ # i^",
+ "r^au| zerde, zerde ua r^aue, # dei, dei, # ua ~azad r^oi # ~oi, zerde deuer^i^. # zerde dr^e, # zerde zor zor dr^e.| r^au # r^",
+ "do+r^jaue|- ~azad, ~azad, uere juuri^ # ua doi dade r^jaue. # - ~oi, ~eue duu r^oje der^ji^ # duu r^oje doi dade der^ji^.| juur # j",
+ "zrize|- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade.| zrize # i_ ",
+ "dari+dri^j| zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere, # ~eu dare dri^je ua r^uuaue.| dri^j # i^_",
+ "~audan| zara+u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n.| ~audan # n",
+ "nazi^| daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~_i^ue zor ~azan. # zuu uerneue, zuu.| nazi^ # n_",
+ "dar+der^ui^_n_m| - daie, ua ~em duu dare der^ui^_n_m, # duai ~eue, ~auian dedem, # - uere nazi^, uere, # ua der^oin, zuu uere # - ua di^_m daie, ua di^_m, # ~em duu dare der^ui^_n_m, # duai ~eue di^_m.| der^ui^_n_m # m",
+ "mer^e+zerd| ma, ma, ma, # mame, mame, # ~eme mer^e zerde, # mer^e zerdi mn # mn di^_meue mame. # ua der^om ~aui dedem, # duai ~eue di^_meue.| mer^ # m_",
+ "mi^uji+naiab| - ~emeie mi^uj, mi^uji naiab. # - mam zorab, mam zorab, # mer^o, mer^o, mi^ujm deui^. # - zuu uere zeineb, zuu, # dei uere, ~emeie mi^uji naiab.| zeineb # b",
+ "bebei+zeineb| zeineb, uere, uere # mame bebei bo narduui. # mame bebei bo narduum? # bji daie, # bji babe, # bji mame.| babe # b_",
+ "baran+debari^t| ~ai neuzad, ua baran debari^t. # ~em_r^o ~au zor debi^t. # be baran dar zuu der^ui^t. # bnuar^e mam zorab ua der^uat, # der^uat bo bazar^ mi^uj di^ni^t.| debari^t # t",
+ "teiare| bnuar^n, teiare, teiare. # teiarei uatan diue? # ua deibeme nau ~eu darane. # ~euei zuu ditieue, # debi^te teiarei ~eu. # ~azad to detuani zuutr bidoziteue?| teiare # t_",
+ "us+be| us, us, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # us+be dara, us, uazbi^ne, # bes ~euende ~azari teir bde.| us # s",
+ "si^u| ~azad, si^ si^um bo berdeue. # r^aueste nes_rin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^.| si^u # s_",
+ "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ bi^m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
+ "s^uus^e+s^ir| bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue.| s^uus^e # s^_",
+ "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
+ "keui+mn| daike, daike, # ua tutke suur+u keui mn iari deken. # kut, kut, tutke suur, # nekei ~azari keui mn bdei. # ~ai, ua keui mn tutke suuri r^auna, # keui mn keui^ki ~azaie. # ks^, ks^, keueke, bese uazbi^ne.| keu # k",
+"iarii+top| nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu tip iari dekein, # duu deste iari be iek top dekein.| top # p",
+"ps^e+spi| ps^e spi, ps^, ps^, ps^. # miau, miau. # uere pi^s^eue, mer^o. # ~em penir+u nane dedem be to. # miau, miau. # zuu uere, ps^e spi, # to ps^ei mni, netrsi.| ps^e # p_",
+"si^+seg| ~ai, neuzad uere. # ua si^ seg iek kerui^s^k r^au deni^n. # prs^ng bang bke, ua bo ~i^re di^n. # deng meke, ba bi^n. # prs^ng, prs^ng, uere seirke. # ua si^ seg iek kerui^s^k r^au deni^n. # zuuke, ua bo ~i^re di^n.| seg # g"
  ];
+ 
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
 const PLAY="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'></path><path d='M8 5v14l11-7z'></path></svg>";
 var i=1;
@@ -184,11 +186,22 @@ function load_page(){
   t=add_tags(t);
   if(i==0) t=toc();
   document.getElementById("txt").innerHTML=t;
-  var fs=ta[3];
+  const fsa=[40,70,70,60,50,50];
+  var fs=40;
+  if(i>6) fs=fsa[0]; else fs=fsa[i];
   if(!is_mobile()) fs=fs*1.4;
-  console.log(is_mobile())
   document.getElementById("txt").style.fontSize=fs+"px";
-  if(i==1 || i==2 ) document.getElementById("bd").style.textAlign="center";
+  if(i==1 || i==2) document.getElementById("bd").style.textAlign="center";
+  if(i==3) {
+    document.getElementById("cc").style.lineHeight="30%";
+    document.getElementById("w0305").style.lineHeight="100%";
+    document.getElementById("w0306").style.lineHeight="160%";
+    document.getElementById("w0307").style.lineHeight="30%";
+    }
+  if(i==4) {
+    document.getElementById("cc").style.lineHeight="40%";
+    document.getElementById("w0407").style.lineHeight="250%";
+    }
   }
 
 function gototoc(){
@@ -258,9 +271,9 @@ function add_tags(t){
    if(w!="|" && w!="#" && w!="-") k++
  }
  var a=rv.split("|");
- var tt="<div class=tt>"+a[0]+"</div>";
+ var tt="<div id=tt>"+a[0]+"</div>";
  var bd="<div id=bd>"+a[1]+"</div>";
- var cc="<div class=ft><div class=cc>"+a[2]+"</div>"; //<div class=cp><img src='res/p"+i0+".jpg' width=100px></div></div>";
+ var cc="<div id=ft><div id=cc>"+a[2]+"</div>"; //<div id=cp><img src='res/p"+i0+".jpg' width=100px></div></div>";
  if(i<3)
  cc="";
  rv=tt+bd+cc;
@@ -352,6 +365,7 @@ function eng_to_kur(eng){
  kur=kur.replaceAll("t","ت");
  kur=kur.replaceAll("s","س");
  kur=kur.replaceAll("p","پ");
+ kur=kur.replaceAll("g","گ");
  kur=kur.replaceAll("","");
  kur=kur.replaceAll("0","٠");
  kur=kur.replaceAll("1","١");
