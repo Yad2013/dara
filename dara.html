@@ -133,8 +133,8 @@ const a=[
  "~au| ~ai, ~ai, #doi dade ~aui zore. #~oi, ~oi, dara, #do ~aui ua zore.| ~au #~_",
  "dade| dade, dade, # uere deri^. # ~eue ~azade, doi deui^. # ~i^, ~i^, dara. # dade ua di^.| deri^ # i^",
  "r^au| zerde, zerde ua r^aue, # dei, dei, # ua ~azad r^oi # ~oi, zerde deuer^i^. # zerde dr^e, # zerde zor zor dr^e.| r^au # r^",
- "do+r^jaue|- ~azad, ~azad, uere juuri^ # ua doi dade r^jaue. # - ~oi, ~eue duu r^oje der^ji^ # duu r^oje doi dade der^ji^.| juur # j",
- "zrize|- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade.| zrize # i_ ",
+ "do+r^jaue|- ~azad, ~azad, uere juuri^, # ua doi dade r^jaue. # - ~oi, ~eue duu r^oje der^ji^. # duu r^oje doi dade der^ji^.| juur # j",
+ "zrize|- ~ai, ~euei zrizei diue, # zrizei ~azad? # - uere, uere, dara, # ~eu zrize ziue zrizei ~azade? # ~ei, ~ei, ~eue zrizei ~azade.| zrize # i_",
  "dari+dri^j| zara, uere ~i^re, # ua ~eu dare dri^je r^uuaue. # dei zara, zuu uere, # ~eu dare dri^je ua r^uuaue.| dri^j # i^_",
  "~audan| zara+u ~azad ua der^on, # ~aui ~eu duu dare deden. # ~eu duu dare zuu der^ui^n, # zuu zuu ~au dedri^n.| ~audan # n",
  "nazi^| daie ~eue neuzade. # ua der^oine nau ~eu darane. # der^oin dar der^ui^nin. # ~oi, nazi^, dar der^ui^nn? # diare ~_i^ue zor ~azan. # zuu uerneue, zuu.| nazi^ # n_",
@@ -147,7 +147,7 @@ const a=[
  "us+be| us, us, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # us+be dara, us, uazbi^ne, # bes ~euende ~azari teir bde.| us # s",
  "si^u| ~azad, si^ si^um bo berdeue. # r^aueste nes_rin, ba berneb_meue, # ~i^sta si^ si^uan berdedemeue, # ~eue si^ui^, # ~eue duu si^u, # ~eue si^ si^u, # si^ui dit deui^? # bese, bese, nameui^.| si^u # s_",
  "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ bi^m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
- "s^uus^e+s^ir| bnuar^e ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue.| s^uus^e # s^_",
+ "s^uus^e+s^ir| bnuar^ne ~em s^uus^e s^ire, # s^iri mer^e zerdi mne, # s^iri mer^e zerd s^irine. # uern danis^n, s^uus^ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^teue.| s^uus^e # s^_",
  "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
  "keui+mn| daike, daike, # ua tutke suur+u keui mn iari deken. # kut, kut, tutke suur, # nekei ~azari keui mn bdei. # ~ai, ua keui mn tutke suuri r^auna, # keui mn keui^ki ~azaie. # ks^, ks^, keueke, bese uazbi^ne.| keu # k",
 "iarii+top| nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu tip iari dekein, # duu deste iari be iek top dekein.| top # p",
@@ -284,12 +284,13 @@ function add_tags(t){
  
 var playing=0;
 function play_lesson(){
+  load_page();
   if(playing==0){
     document.getElementById("play").innerHTML=PAUSE;
     var c=get_word_count(a[i]);
     var k=0;
     var kp=0;
-    var timer=setInterval(function(){
+    timer=setInterval(function(){
       playing=1;
       var i0=i.toString();
       var i0=i0.padStart(2,"0");
@@ -311,6 +312,10 @@ function play_lesson(){
       console.log(`c:${c}, k:${k}, timer:${timer}`);
       k++;
       }, 1300);
+    } else {
+      clearInterval(timer);
+      playing=0;
+      document.getElementById("play").innerHTML=PLAY;
     }
   }
 
@@ -318,8 +323,11 @@ function get_word_count(t){
   var rv=0;
   t=t.replaceAll("|","")
   t=t.replaceAll("#","")
+  t=t.replaceAll("-","")
+  t=t.replaceAll("   "," ")
   t=t.replaceAll("  "," ")
   var a=t.split(" ");
+  console.log(a);
   rv=a.length;
   return rv;
   }
