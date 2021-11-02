@@ -331,7 +331,12 @@ function play_lesson_recursive(){
   if(syl>2) tp=1800;
   console.log(`c:${c}, k:${k}, tp:${tp},${wa[k]}:${timer}`);
   k++;
-  if(k<c) timer=setTimeout(play_lesson_recursive, tp);
+  if(k<c) timer=setTimeout(play_lesson_recursive, tp); else {
+    clearTimeout(timer);
+    k=0;
+    document.getElementById("play").innerHTML=PLAY;
+    location.reload();
+    }
   }
 
 function get_sylables(t){
