@@ -165,7 +165,8 @@ const a=[
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
 const PLAY="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'></path><path d='M8 5v14l11-7z'></path></svg>";
 var i=1;
-var rd="t"
+var rd="t";
+if(localStorage.getItem("DARA_LESSON_VOICE")===null) var rd="t"; else rd=localStorage.getItem("DARA_LESSON_VOICE");
 window.onload=load_page();
 
 function ps(id){
@@ -177,15 +178,22 @@ function ps(id){
 
 function next(){
  if(i<a.length) i++;
+ localStorage.setItem("DARA_LESSON_NO", i)
+ k=0;
+ playing=1;
  load_page()
  }
  
 function prev(){
  if(i>0) i--;
+ localStorage.setItem("DARA_LESSON_NO", i)
+ k=0;
+ playing=1;
  load_page()
  }
  
 function load_page(){
+  if(localStorage.getItem("DARA_LESSON_NO")===null) localStorage.setItem("DARA_LESSON_NO", 1); else i=localStorage.getItem("DARA_LESSON_NO");
   var i0=i.toString();
   var i0=i0.padStart(2,"0");
   document.getElementById("imageid").src="res/p" + i0 + ".jpg";
@@ -244,8 +252,8 @@ document.addEventListener("keydown",event => {
  if (event.key==="ArrowLeft") prev();
 
  if (event.key==="p") play_lesson();
- if (event.key==="t") {rd="t"; load_page();}
- if (event.key==="y") {rd="y"; load_page();}
+ if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
+ if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
 
  if (event.key > -1 && event.key < 10){
   i=event.key;
@@ -288,41 +296,42 @@ function add_tags(t){
  return rv;
  }
  
-var playing=0;
+var timer=0;
 var k=0;
 function play_lesson(){
+  if(timer>0) {
+    clearTimeout(timer);
+    k=0;
+    document.getElementById("play").innerHTML=PLAY;
+//    load_page();
+    location.reload();
+    }
+  if(timer==0) {
+    play_lesson_recursive();
+    }
+  }
+function play_lesson_recursive(){
   load_page();
   var tp=1200; // time play
-  if(playing==0){
-    document.getElementById("play").innerHTML=PAUSE;
-    var wa=get_word_array(a[i]);
-    var c=wa.length;
-    var kp=0;
-    var i0=i.toString();
-    var i0=i0.padStart(2,"0");
-    var k0=k.toString();
-    var k0=k0.padStart(2,"0");
-    if (k>0) kp=k-1;
-    var k1=kp.toString();
-    var k1=k1.padStart(2,"0");
-    document.getElementById("w"+i0+k1).style.color="";
-    document.getElementById("w"+i0+k0).style.color="#f00";
-    ps(""+i0+k0);
-    var syl=get_sylables(wa[k]);
-    if(syl>2) tp=1800;
-//    console.log(`${wa[k]}:${syl},tw:${tp}`);
-//    console.log(`c:${c}, k:${k}, tp:${tp}`);
-    k++;
-    if(k<c) setTimeout(play_lesson, tp); else {
-      k=0;
-      playing=0;
-      document.getElementById("play").innerHTML=PLAY;
-      }
-    } else {
-      k=0;
-      playing=0;
-      document.getElementById("play").innerHTML=PLAY;
-    }
+  document.getElementById("play").innerHTML=PAUSE;
+  var wa=get_word_array(a[i]);
+  var c=wa.length;
+  var kp=0;
+  var i0=i.toString();
+  var i0=i0.padStart(2,"0");
+  var k0=k.toString();
+  var k0=k0.padStart(2,"0");
+  if (k>0) kp=k-1;
+  var k1=kp.toString();
+  var k1=k1.padStart(2,"0");
+  document.getElementById("w"+i0+k1).style.color="";
+  document.getElementById("w"+i0+k0).style.color="#f00";
+  ps(""+i0+k0);
+  var syl=get_sylables(wa[k]);
+  if(syl>2) tp=1800;
+  console.log(`c:${c}, k:${k}, tp:${tp},${wa[k]}:${timer}`);
+  k++;
+  if(k<c) timer=setTimeout(play_lesson_recursive, tp);
   }
 
 function get_sylables(t){
