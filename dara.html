@@ -111,9 +111,11 @@ button:hover{
  <button onclick="gototoc()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path></svg>
  </button>
+ <!--
  <button id=play onclick="play_lesson()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M8 5v14l11-7z"></path></svg>
  </button>
+ -->
  <button onclick="prev()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
  </button>
@@ -159,7 +161,8 @@ const a=[
 "si^+seg| ~ai, neuzad uere. # ua si^ seg iek kerui^s^k r^au deni^n. # prs^ng bang bke, ua bo ~i^re di^n. # deng meke, ba bi^n. # prs^ng, prs^ng, uere seirke. # ua si^ seg iek kerui^s^k r^au deni^n. # zuuke, ua bo ~i^re di^n.| seg # g",
 "kare+spi| gdi, gdi, kare spi # to mn nanasi? # g_iat dedemi^ g_ia, netrsi # gdi, gdi, gdi # daie g_ian, kare spi bgre. # r^enge br^uat, zuube. # kare spi, mer^o. # ~em g_iaie dedem be to.| g_ia # g",
 "mel| ~ai nesrin, bnuar^e mel. # ua be ~asmanda pol pol der^on. # ~eue iek pol. # ~eue duu pol. # neuzad, r^enge ~euane m_raui bn. # boie ua ml dri^j+u zl zl diarn.| mel # l",
- "blui^r+li^dan| bezme, sema+u strane. # dei ~azad, blui^r li^de seirane. # blui^reke bas^ li^de g_iane. # lem nau l_me sema+u strane. # bji ~azad, bo ~em blui^r li^dane. # dei, dei, boman li^de g_iane.| l_m # l_"
+ "blui^r+li^dan| bezme, sema+u strane. # dei ~azad, blui^r li^de seirane. # blui^reke bas^ li^de g_iane. # lem nau l_me sema+u strane. # bji ~azad, bo ~em blui^r li^dane. # dei, dei, boman li^de g_iane.| l_m # l_",
+ "hi^lke| nesrin, bnuar^e ~em hi^lkane, # ~em hi^lke zerd+u suurane # dara g_ian, iek hi^lkem bo b_hi^ne # ua bot dehaui^jm bnuar^e. # hei, hei, nekei bi_haui^ji. # bas^e nai_haui^jm, netrsi. # her bji dara, her bji.| hi^lke # h"
  ];
  
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
@@ -416,7 +419,7 @@ function eng_to_kur(eng){
  kur=kur.replaceAll("p","پ");
  kur=kur.replaceAll("g","گ");
  kur=kur.replaceAll("l","ل");
- kur=kur.replaceAll("","");
+ kur=kur.replaceAll("h","ه");
  kur=kur.replaceAll("","");
  kur=kur.replaceAll("0","٠");
  kur=kur.replaceAll("1","١");
