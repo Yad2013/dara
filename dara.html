@@ -94,7 +94,6 @@ button:hover{
     }
  }
 </style>
-<script>window['ga-disable-UA-78284393-1']=true;</script>
 </head>
 <body>
 <div id=con>
@@ -115,10 +114,10 @@ button:hover{
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path></svg>
  </button>
  <!--
+ -->
  <button id=play onclick="play_lesson()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M8 5v14l11-7z"></path></svg>
  </button>
- -->
  <button onclick="prev()">
  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
  </button>
@@ -156,24 +155,41 @@ const a=[
  "us+be| us, us, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # us+be dara, us, uazbi^ne, # bes ~euende ~azari teir bde.| us # s",
  "s_i^u| ~azad, s_i^ s_i^um bo berdeue. # r^aues_te nes_rin, ba berneb_meue, # ~i^s_ta s_i^ s_i^uan berdedemeue, # ~eue s_i^ui^, # ~eue duu s_i^u, # ~eue s_i^ si^u, # s_i^ui dit deui^? # bes_e, bes_e, nameui^.| s_i^u # s_",
  "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ b_i^_m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
- "s^_uus^_e+s^_ir| bnuar^ne ~em s^_uus^_e s^_ire, # s^_iri mer^e zerdi mne, # s^_iri mer^e zerd s^_irine. # uern danis^_n, s^_uus^_ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^_teue.| s^_uus^_e # s^_",
- "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
+ "s^_uus^_e+s^_ir| bnuar^ne ~em s^_uus^_e s^_ire, # s^_iri mer^e zerdei mne, # s^_iri mer^e zerd s^_irine. # uern danis^_n, s^_uus^_ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^_teue.| s^_uus^_e # s^_",
+ "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk b_bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
  "k_eui+mn| daik_e, daik_e, # ua tutk_e suur+u k_eui mn iari dek_en. # k_ut, k_ut, tutk_e suur, # nek_ei ~azari k_eui mn bdei. # ~ai, ua k_eui mn tutk_e suuri r^auna, # k_eui mn k_eui^k_i ~azaie. # k_s^, k_s^, k_euek_e, bese uazb_i^ne.| k_eu # k_",
 "iarii+top| nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu t_i_p iari dekein, # duu deste iari be iek top dekein.| top # p",
 "p_s^e+sp_i| p_s^e sp_i, p_s^, p_s^, p_s^. # miau, miau. # uere p_i^s^eue, mer^o. # ~em p_enir+u nane dedem be to. # miau, miau. # zuu uere, p_s^e sp_i, # to p_s^ei mni, netrsi.| p_s^e # p_",
 "si^+seg| ~ai, neuzad uere. # ua si^ seg iek kerui^s^k r^au deni^n. # prs^ng bang bke, ua bo ~i^re di^n. # deng meke, ba bi^n. # prs^ng, prs^ng, uere seirke. # ua si^ seg iek kerui^s^k r^au deni^n. # zuuke, ua bo ~i^re di^n.| seg # g",
-"kare+spi| g_di, g_di, kare spi # to mn nanasi? # g_iat dedemi^ g_ia, netrsi # g_di, g_di, g_di # daie g_ian, kare spi bg_re. # r^eng_e br^uat, zuube. # kare spi, mer^o. # ~em g_iaie dedem be to.| g_ia # g_",
+"kare+spi| g_di, g_di, kare spi # to mn nanasi? # g_iat dedem_i^ g_ia, netrsi # g_di, g_di, g_di # daie g_ian, kare spi bg_re. # r^eng_e br^uat, zuube. # kare spi, mer^o. # ~em g_iaie dedem be to.| g_ia # g_",
 "mel| ~ai nesrin, bnuar^e mel. # ua be ~as_manda pol pol der^on. # ~eue iek pol. # ~eue duu pol. # neuzad, r^enge ~euane m_raui bn. # boie ua ml dri^j+u zl zl diarn.| mel # l",
  "bl_ui^r+l_i^dan| bezme, sema+u strane. # dei ~azad, bl_ui^r l_i^de seirane. # bl_ui^reke bas^ l_i^de g_iane. # l_em nau l_me sema+u strane. # bji ~azad, bo ~em bl_ui^r l_i^dane. # dei, dei, boman l_i^de g_iane.| l_m # l_",
  "h_i^lke| nesrin, bnuar^e ~em h_i^lkane, # ~em h_i^lke zerd+u suurane # dara g_ian, iek h_i^lkem bo b_h_i^ne # ua bot dehaui^jm bnuar^e. # h_ei, h_ei, nekei bi_haui^ji. # bas^e nai_haui^jm, netrsi. # h_er bji dara, h_er bji.| h_i^lke # h_",
- "~auazi+gul^| ho ho, kakei s^_ms^al^+jen g_ian, # ~auazi hei+gul^ li^+nadei boman? # ua be b_i^l^, gl^ hel^+dekenin, # nemami dar+gul^ der^ui^nin. # bas^e s^_ms^al^ li^+dedem botan, # ~_i^ues^ be b_i^l^, gl^ hel^+kenn, # nemami dar+gul^ br^ui^nn.| gul^ # l^"
+ "~auazi+gul^| ho ho, kakei s^_ms^al^+jen g_ian, # ~auazi hei+gul^ li^+nadei boman? # ua be b_i^l^, gl^ hel^+dekenin, # nemami dar+gul^ der^ui^nin. # bas^e s^_ms^al^ li^+dedem botan, # ~_i^ues^ be b_i^l^, gl^ hel^+kenn, # nemami dar+gul^ br^ui^nn.| gul^ # l^",
+ "kal^_ek| dara, dara. # bel^_i^ babe g_ian, bel^_i^. # uere, ~em kal^_eket bdem_i^, # be daikt bl^_i^, bot let bkat # tokl^_ekei bas^ pak bkat, # supast dekem babe, # bo ~em kal^_eke naiabe.| kal^_ek # l^_"
  ];
 
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
 const PLAY="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'></path><path d='M8 5v14l11-7z'></path></svg>";
+
 var i=1;
 var rd="t";
-if(localStorage.getItem("DARA_LESSON_VOICE")===null) var rd="t"; else rd=localStorage.getItem("DARA_LESSON_VOICE");
+var red=0;
+var qs=window.location.search;
+qs=qs.replaceAll("?","");
+var qsa=qs.split("&")
+var qpa={};
+for(j in qsa) {
+  tqa=qsa[j].split("=");
+  qpa[tqa[0]]=tqa[1]
+  }
+if("lesson" in qpa) {i=qpa["lesson"]; localStorage.setItem("DARA_LESSON_NO", i);}
+
+if(localStorage.getItem("DARA_LESSON_NO")===null) localStorage.setItem("DARA_LESSON_NO", 1); else i=localStorage.getItem("DARA_LESSON_NO");
+if(localStorage.getItem("DARA_LESSON_VOICE")===null) localStorage.setItem("DARA_LESSON_VOICE", rd); else rd=localStorage.getItem("DARA_LESSON_VOICE");
+if(localStorage.getItem("DARA_LESSON_RED")===null) localStorage.setItem("DARA_LESSON_RED", red); else red=localStorage.getItem("DARA_LESSON_RED");
+
+
 window.onload=load_page();
 
 function ps(id){
@@ -200,7 +216,6 @@ function prev(){
  }
  
 function load_page(){
-  if(localStorage.getItem("DARA_LESSON_NO")===null) localStorage.setItem("DARA_LESSON_NO", 1); else i=localStorage.getItem("DARA_LESSON_NO");
   var i0=i.toString();
   var i0=i0.padStart(2,"0");
   document.getElementById("imageid").src="res/p" + i0 + ".jpg";
@@ -253,7 +268,6 @@ function toc(){
  return rv;
  }
 
-var red=0;
 document.addEventListener("keydown",event => {
  if (event.key==="ArrowRight") next();
  
@@ -263,7 +277,7 @@ document.addEventListener("keydown",event => {
  if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
  if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
 
- if (event.key==="r") {if(red==0) red=1; else red=0; load_page();}
+ if (event.key==="r") {if(red==0) red=1; else red=0; localStorage.setItem("DARA_LESSON_RED", red); load_page();}
 
  if (event.key > -1 && event.key < 10){
   i=event.key;
@@ -304,8 +318,8 @@ function add_tags(t){
  rv=rv.replaceAll("#","<br>");
  rv=rv.replaceAll("+"," ");
  var cl=wa[wa.length-1];
-// console.log(cl);
- if(red && i>3){
+ // console.log(red);
+ if(red!=0 && i>3){
   rv=rv.replaceAll(cl,"<span class=red>"+cl+"</span>");
   clt=cl.replaceAll("ـ","");
   const al="ا";
@@ -324,7 +338,7 @@ function play_lesson(){
 //    load_page();
     location.reload();
     }
-  if(timer==0) {
+  if(timer==0){
     play_lesson_recursive();
     }
   }
@@ -360,6 +374,7 @@ function play_lesson_recursive(){
 function get_sylables(t){
   t=t.replaceAll("ui^","wi^")
   t=t.replaceAll("^","")
+  t=t.replaceAll("_","")
   t=t.replaceAll("uu","u")
   t=t.replaceAll("au","aw")
   t=t.replaceAll("ai","ay")
@@ -374,8 +389,11 @@ function get_sylables(t){
   var e=t.split("e").length-1;
   var o=t.split("o").length-1;
   var p=t.split("+").length-1;
+  var bn=t.split("bn").length-1;
+  var nm=t.split("nm").length-1;
+  var nn=t.split("nn").length-1;
 //  console.log(t);
-  return a+i+e+u+o+p;
+  return a+i+e+u+o+p+bn+nm+nn;
   }
 
 function get_word_array(t){
@@ -437,16 +455,6 @@ function eng_to_kur(eng){
  kur=kur.replaceAll("l","ل");
  kur=kur.replaceAll("h","ه");
  kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
  kur=kur.replaceAll("0","٠");
  kur=kur.replaceAll("1","١");
  kur=kur.replaceAll("2","٢");
@@ -471,11 +479,13 @@ to do
 =====
 add more pages
 add sound
-make settings
-add translation
+make settings: voice, letter red
+add translations
+
 ====
 done
 ====
+study letter become red
 make buttons work
 read each word separatly
 add buttons for read, next and content
