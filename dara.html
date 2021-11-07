@@ -94,6 +94,17 @@ h2{
 	text-align:left;
   line-height:100%;
 	}
+.cg{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.ce{
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  line-height:160%;
+  padding:10px;
+}
+	
 @media screen and (orientation:landscape) {
 	#pic{
 		float:left;
@@ -129,11 +140,6 @@ h2{
 </div>
 <div style="height:50px;"></div>
 <div id=ftb>
-<!--
-<button>
-<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-</button>
--->
 <button id=more onclick="get_more()">
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
 </button>
@@ -155,7 +161,7 @@ h2{
 </div>
 
 <script>
-const a=[
+const la=[
  "nauerok||",
  "dar| dar dar dar|",
  "dara| dara dara dara|",
@@ -196,7 +202,48 @@ const a=[
  "~auazi+gul^| ho ho, kakei s^_ms^al^+jen g_ian, # ~auazi hei+gul^ li^+nadei boman? # ua be b_i^l^, gl^ hel^+dekenin, # nemami dar+gul^ der^ui^nin. # bas^e s^_ms^al^ li^+dedem botan, # ~_i^ues^ be b_i^l^, gl^ hel^+kenn, # nemami dar+gul^ br^ui^nn.| gul^ # l^",
  "kal^_ek| dara, dara. # bel^_i^ babe g_ian, bel^_i^. # uere, ~em kal^_eket bdem_i^, # be daikt bl^_i^, bot let bkat # tokl^_ekei bas^ pak bkat, # supast dekem babe, # bo ~em kal^_eke naiabe.| kal^_ek # l^_",
  "kotr+u+r^is^ol^e| teq, teq, teq. # nesrin, ~eu dergaie bkeue, # ua kotr+u r^is^ol^em bo to hi^naue, # supas, supas, babe g_ian, # hendi^ sl^q urdkem boian? # bel^i^, bel^i^, naskol^i^, # legel^ naner^eq boian dani^.| sl^q # q",
- "kel^ebab+u+qaz| kel^ebabe r^engine, # be qaim bq_uuq_i^ne, # ~eu qazane bbezi^ne. # dei, ~eue bo naq_uuq_i^ni. # ~eu qazane bbezi^ni? # qazekan, uern bq_ir^i^nn, # ~em kel^ebabe bbezi^nn. # q_i, q_i, q_i # q_uu, q_uu, q_uu. # ha, ha, qaim nebuu.| qaz # q_"
+ "kel^ebab+u+qaz| kel^ebabe r^engine, # be qaim bq_uuq_i^ne, # ~eu qazane bbezi^ne. # dei, ~eue bo naq_uuq_i^ni. # ~eu qazane bbezi^ni? # qazekan, uern bq_ir^i^nn, # ~em kel^ebabe bbezi^nn. # q_i, q_i, q_i # q_uu, q_uu, q_uu. # ha, ha, qaim nebuu.| qaz # q_",
+ "dilani^| gelaui^j gian, ~eue dilani^ dekei? # ~azad, ~ei to dilani^ nakei? # uere lam, mn pal^de, zuuke, # duai mn, tos^ dilani^ bke. # bas^e, ua hatm, bas^ dest bgri, # bo ~emla+u ~eula ner^uani, ba nekeui.| gelaui^j # la"
+ ];
+
+const ca=[
+ "|||",
+ "~_|~au||10",
+ "a|dar|A|1",
+ "b|babe|B|21",
+ "p|ps^e|P|31",
+ "t|teiare|T|23",
+ "c|co|J|1",
+ "c^|c^alak|CH|1",
+ "h^|h^lua||1",
+ "x|xurma|KH|1",
+ "d|dar|D|1",
+ "r|dar|R|1",
+ "r^|r^au||12",
+ "z|zara|Z|8",
+ "j|juur|ZH|13",
+ "s|si^u|S|25",
+ "s^|s^uus^e|SH|27",
+ "`|`eles^is^||",
+ "`^|||1",
+ "f|||1",
+ "v|||1",
+ "q|||40",
+ "k|||29",
+ "g|||33",
+ "l|||35",
+ "l^|||37",
+ "m|||19",
+ "n|||17",
+ "h_|||36",
+ "e|||6",
+ "u|||5",
+ "uu|||7",
+ "o|||9",
+ "i|||4",
+ "i^|||38",
+ "la|||41",
+ "l^a|||1"
  ];
 
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
@@ -230,7 +277,7 @@ function ps(id){
 	}
 
 function next(){
- if(i<a.length) i++;
+ if(i<la.length) i++;
  localStorage.setItem("DARA_LESSON_NO", i)
  k=0;
  playing=1;
@@ -246,6 +293,9 @@ function prev(){
  }
 
 function get_more(){
+  clearTimeout(timer);
+  k=0;
+  document.getElementById("play").innerHTML=PLAY;
   var dau=red==0?"داو":"دا<a class=red>و</a>";
   var hnw=`<button id=dau onclick="highlight()">${dau}</button`;
   var voice=rd=="t"?"<button class=red onclick=voice('t')>Tara</button> <button onclick=voice('y')>Yad</button>":"<button onclick=voice('t')>Tara</button> <button class=red onclick=voice('y')>Yad</button>";
@@ -271,12 +321,14 @@ p: Play lesson<br>
 t: Tara voice<br>
 y: Yad voice (now lesson 1 and 5)<br>
 r: Red highlight of new letter<br>
+l: Letters<br>
 s: Settigs page<br>
 b: Back to lesson (from settings)<br>
 </div>
 <h2>Credits</h2>
 <div class=etxt>
-Text entry and coding: Yad<br>
+Text entry: Yad<br>
+Coding: Yad (with some help from dad!)<br>
 Voice: Tara (10 years old in 1998) and Yad (8 years old in 2021)<br>
 Animation: Karzan (12 years old in 1998)<br>
 Audio recording and processing: Fadhil (1998)<br>
@@ -284,12 +336,27 @@ Audio recording and processing: Fadhil (1998)<br>
   `;
   document.getElementById("txt").innerHTML=t;
   }
- 
+
+function get_char_grid(){
+  clearTimeout(timer);
+  k=0;
+  document.getElementById("play").innerHTML=PLAY;
+  var t="<div class=cg>";
+  for(j=1; j<ca.length; j++){
+    cea=ca[j].split("|");
+    cet=eng_to_kur(cea[0]);
+    t+="<div class=ce><a onclick='goto("+cea[3]+")'>"+cet+"</a></div>";
+    }
+  t+="</div>"
+  document.getElementById("imageid").src="res/p00.jpg";
+  document.getElementById("txt").innerHTML=t;
+  }
+
 function load_page(){
   var i0=i.toString();
   var i0=i0.padStart(2,"0");
   document.getElementById("imageid").src="res/p" + i0 + ".jpg";
-  var t=a[i];
+  var t=la[i];
   var ta=t.split("|");
   t=eng_to_kur(t);
   t=add_tags(t);
@@ -325,8 +392,11 @@ function goto(lc){
  
 function toc(){
  var rv="<div id=bd>";
- for (var j=1;j<a.length;j++){
- var ta=a[j].split("|");
+ var pit="p_itekan";
+ pit=eng_to_kur(pit);
+ rv+="<a onclick='get_char_grid()'>"+pit+"</a><br>"
+ for (var j=1;j<la.length;j++){
+ var ta=la[j].split("|");
  if(ta[0]=="") ta[0]="dara dara";
  var t=eng_to_kur(ta[0]);
  var jk=eng_to_kur(j+"");
@@ -345,6 +415,7 @@ document.addEventListener("keydown",event => {
  if (event.key==="b") load_page();
  if (event.key==="p") play_lesson();
  if (event.key==="s") get_more();
+ if (event.key==="l") get_char_grid();
  if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
  if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
 
@@ -427,7 +498,7 @@ function play_lesson_recursive(){
   load_page();
   var tp=1200; // time play
   document.getElementById("play").innerHTML=PAUSE;
-  var wa=get_word_array(a[i]);
+  var wa=get_word_array(la[i]);
   var c=wa.length;
   var kp=0;
   var i0=i.toString();
@@ -512,6 +583,9 @@ function eng_to_kur(eng){
  kur=kur.replaceAll("s^","ش");
  kur=kur.replaceAll("r^","ڕ");
  kur=kur.replaceAll("i^","ێ");
+ kur=kur.replaceAll("c^","چ");
+ kur=kur.replaceAll("h^","ح");
+ kur=kur.replaceAll("`^","غ");
  kur=kur.replaceAll("j","ژ");
  kur=kur.replaceAll("a","ا");
  kur=kur.replaceAll("d","د");
@@ -536,14 +610,11 @@ function eng_to_kur(eng){
  kur=kur.replaceAll("l","ل");
  kur=kur.replaceAll("h","ه");
  kur=kur.replaceAll("q","ق");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
- kur=kur.replaceAll("","");
+ kur=kur.replaceAll("`","ع");
+ kur=kur.replaceAll("x","خ");
+ kur=kur.replaceAll("c","ج");
+ kur=kur.replaceAll("f","ف");
+ kur=kur.replaceAll("v","ڤ");
  kur=kur.replaceAll("0","٠");
  kur=kur.replaceAll("1","١");
  kur=kur.replaceAll("2","٢");
