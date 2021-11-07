@@ -80,14 +80,14 @@ button:hover{
 }
 h2{
   font-family:arial;
-	font-size:26px;
+	font-size:22px;
 	width:100%;
 	text-align:left;
   line-height:100%;
 	}
 .etxt{
   font-family:arial;
-	font-size:20px;
+	font-size:18px;
 	direction:ltr;
 	text-align:left;
   line-height:100%;
@@ -182,7 +182,7 @@ const a=[
  "s_i^u| ~azad, s_i^ s_i^um bo berdeue. # r^aues_te nes_rin, ba berneb_meue, # ~i^s_ta s_i^ s_i^uan berdedemeue, # ~eue s_i^ui^, # ~eue duu s_i^u, # ~eue s_i^ si^u, # s_i^ui dit deui^? # bes_e, bes_e, nameui^.| s_i^u # s_",
  "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ b_i^_m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
  "s^_uus^_e+s^_ir| bnuar^ne ~em s^_uus^_e s^_ire, # s^_iri mer^e zerdei mne, # s^_iri mer^e zerd s^_irine. # uern danis^_n, s^_uus^_ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^_teue.| s^_uus^_e # s^_",
- "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk b_bem boian # r^aueste, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
+ "s^er^e+m_ris^k| ~ai babe, bnuar^e, # ua duu m_ris^k s^er^iane # duu m_ris^k uek iek ~azan, # ba tozi^k nisk b_bem boian # r^auestn, s^er^e denuuk bese. # ~i^sta nisk dedem be ~_i^ue.| m_ris^k # k",
  "k_eui+mn| daik_e, daik_e, # ua tutk_e suur+u k_eui mn iari dek_en. # k_ut, k_ut, tutk_e suur, # nek_ei ~azari k_eui mn bdei. # ~ai, ua k_eui mn tutk_e suuri r^auna, # k_eui mn k_eui^k_i ~azaie. # k_s^, k_s^, k_euek_e, bese uazb_i^ne.| k_eu # k_",
 "iarii+top| nes_rin, ~eue iek top bo to. # tep, tep, tep. # ~ei top be mn nadei, babe? # neuzad, ~eues^ iek top bo to, bas^e? # bji babe, bji babe, # ~em_r^o duu t_i_p iari dekein, # duu deste iari be iek top dekein.| top # p",
 "p_s^e+sp_i| p_s^e sp_i, p_s^, p_s^, p_s^. # miau, miau. # uere p_i^s^eue, mer^o. # ~em p_enir+u nane dedem be to. # miau, miau. # zuu uere, p_s^e sp_i, # to p_s^ei mni, netrsi.| p_s^e # p_",
@@ -246,13 +246,14 @@ function prev(){
 function get_more(){
   var dau=red==0?"داو":"دا<a class=red>و</a>";
   var hnw=`<button id=dau onclick="highlight()">${dau}</button`;
+  var voice=rd=="t"?"<button class=red onclick=voice('t')>Tara</button> <button onclick=voice('y')>Yad</button>":"<button onclick=voice('t')>Tara</button> <button class=red onclick=voice('y')>Yad</button>";
   const t=`
 <h2>Settings</h2>
 <div class=etxt>
 <table>
 <tr>
 <td>
-Voice: </td><td><button id=tara class=pressed>Tara</button> <button id=yad>Yad</button></td>
+Voice: </td><td>${voice}</td>
 </tr>
 <tr>
 <td>Hightlight New Letters: </td><td>${hnw}</<td>
@@ -354,6 +355,11 @@ document.addEventListener("keydown",event => {
 function highlight(){
   if(red==0) red=1; else red=0;
   localStorage.setItem("DARA_LESSON_RED", red);
+  load_page();
+  }
+function voice(v){
+  if(rd=="t") rd="y"; else rd="t";
+  localStorage.setItem("DARA_LESSON_VOICE", rd);
   load_page();
   }
 
