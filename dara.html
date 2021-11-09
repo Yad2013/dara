@@ -97,7 +97,7 @@ h2{
 .cg{
   display: grid;
   grid-template-columns: auto auto auto auto;
-}
+  }
 .cgw{
   display: grid;
   grid-template-columns: auto;
@@ -111,10 +111,10 @@ h2{
   }
 .cew{
   text-align: center;
-  font-size:20px;
+  font-size:24px;
   line-height:100%;
   padding:2px;
-}
+  }
 table{
   width:100%;
   }
@@ -124,7 +124,6 @@ td{
 img{
   vertical-align:middle;
   }
-
 @media screen and (orientation:landscape) {
 	#pic{
 		float:left;
@@ -229,7 +228,8 @@ const la=[
  "kel^ebab+u+qaz| kel^ebabe r^engine, # be qaim bq_uuq_i^ne, # ~eu qazane bbezi^ne. # dei, ~eue bo naq_uuq_i^ni. # ~eu qazane bbezi^ni? # qazekan, uern bq_ir^i^nn, # ~em kel^ebabe bbezi^nn. # q_i, q_i, q_i # q_uu, q_uu, q_uu. # ha, ha, qaim nebuu.| qaz # q_",
  "dilani^| gelaui^j g_ian, ~eue dilani^ dekei? # ~azad, ~ei to dilani^ nakei? # uere lam, mn pal^de, zuuke, # duai mn, tos^ dilani^ bke. # bas^e, ua hatm, bas^ dest bgri, # bo ~emla+u ~eula ner^uani, ba nekeui.| gelaui^j # la",
  "kef| ~of ~azad, ~of, # mn be tom gut, kur^i^ki bas^+be, # iari be kef meke, # tf leser zeui meke. # li^_m b_buure, daie g_ian, # lemeula iari be kef nakem, # tf leser zeui nakem.| kef # f",
- "f_r^f_r^oke| ~eha daie ~em f_r^f_r^okeie, # mn drustm krduue, seirke. # ~af_erin dara, b_i_hi^_ne. # f_ermuu daie g_ian, bnuar^e # ~af_erin, zor bas^e, # danis^e kf_tem bo li^naui, kf_te, # bot b_i^nm duani geure? # supas daie, iek kf_tem bese.| f_r^f_r^oke # f_"
+ "f_r^f_r^oke| ~eha daie ~em f_r^f_r^okeie, # mn drustm krduue, seirke. # ~af_erin dara, b_i_hi^_ne. # f_ermuu daie g_ian, bnuar^e # ~af_erin, zor bas^e, # danis^e kf_tem bo li^naui, kf_te, # bot b_i^nm duani geure? # supas daie, iek kf_tem bese.| f_r^f_r^oke # f_",
+ "keu| qaqbe qaqbe qaq. # mndal^an, r^aken, uern, # ~eu keue berel^a buue, bom bgrn, # dei, bl^au bl^au buestn. # ~azad g_ian, tos^ r^ake, zuuke, # nzik ~eu gel^au darane boi bueste, # bel^am, iari legel^da meke.| gel^a # l^a"
  ];
 
 const ca=[
@@ -238,28 +238,28 @@ const ca=[
  "a|dar|A|1",
  "b|bab_e|B|21",
  "p|p_s^e|P|31",
- "t|teiare|T|23",
- "c|co|J|1",
+ "t|t_eiare|T|23",
+ "c|c_o|J|1",
  "c^|c^alak|CH|1",
- "h^|h^elua||1",
- "x|xurma|KH|1",
+ "h^|h^_elua||1",
+ "x|x_urma|KH|1",
  "d|dar|D|1",
  "r|dar|R|1",
  "r^|r^au||12",
  "z|zara|Z|8",
  "j|juur|ZH|13",
- "s|si^u|S|25",
- "s^|s^uus^e|SH|27",
- "`|`eles^is^||1",
+ "s|s_i^u|S|25",
+ "s^|s^_uus^e|SH|27",
+ "`|`_eles^is^||1",
  "`^|`^ar`^ari^n||1",
- "f|fr^fr^oke||43",
+ "f|f_r^f_r^oke||43",
  "v|gvegv||1",
  "q|qaz||40",
- "k|keu||29",
+ "k|k_eu||29",
  "g|g_ia||33",
  "l|l_m||35",
- "l^|kal^ek||37",
- "m|mer^||19",
+ "l^|kal^_ek||37",
+ "m|m_er^||19",
  "n|nazi^||17",
  "h_|h_i^lke||36",
  "e|uere||6",
@@ -269,7 +269,7 @@ const ca=[
  "i|dari di||4",
  "i^|deri^||11",
  "la|gelaui^j||41",
- "l^a|gel^a||1"
+ "l^a|gel^a||44"
  ];
 
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
@@ -373,10 +373,12 @@ function get_char_grid(m){
   for(j=1; j<ca.length; j++){
     cea=ca[j].split("|");
     cet=eng_to_kur(cea[0]);
+    cew=eng_to_kur(cea[1]);
+    if(red) cew=cew.replaceAll(cet,"<span class=red>"+cet+"</span>");
     var n=cea[3];
     var n0=n.toString();
     n0=n0.padStart(2,"0");
-    t+=m==2?" <div class=ce><table><tr><td><a onclick='goto("+n+")'>"+cet+"</a></td><td><div class=cew>"+eng_to_kur(cea[1])+"</div></td><td valign=bottom><img src=res/p"+n0+".jpg height=80px></td></tr></table></div> ":"<div class=ce><a onclick='goto("+n+")'>"+cet+"</a></div>";
+    t+=m==2?" <div class=ce><table><tr><td><a onclick='goto("+n+")'>"+cet+"</a></td><td><div class=cew>"+cew+"</div></td><td valign=bottom><img src=res/p"+n0+".jpg height=80px></td></tr></table></div> ":"<div class=ce><a onclick='goto("+n+")'>"+cet+"</a></div>";
     }
   t+="</div>"
   document.getElementById("imageid").src="res/p00.jpg";
@@ -425,7 +427,7 @@ function toc(){
  var rv="<div id=bd>";
  var pit="p_itekan";
  pit=eng_to_kur(pit);
- rv+="<a onclick='get_char_grid(1)'>"+pit+"</a> "
+ rv+="<a onclick='get_char_grid(1)'>"+pit+"</a><br>"
  pit="p_it u us^e";
  pit=eng_to_kur(pit);
  rv+="<a onclick='get_char_grid(2)'>"+pit+"</a><br>"
