@@ -161,7 +161,7 @@ img{
  }
 </style>
 </head>
-<body>
+<body ondblclick="toggle_buttons()">
 <div id=con>
 <div id=lno></div>
 <div id=pic>
@@ -351,6 +351,7 @@ Voice: </td><td align=right>${voice}</td>
 <h2>Shortcuts</h2>
 <div class=etxt>
 Arrows: Next and previous lessons<br>
+Escape: Hide menu<br>
 Numbers 1-9: Go to lesson<br>
 Number 0: Contents<br>
 p: Play lesson<br>
@@ -359,6 +360,7 @@ y: Yad voice (now lesson 1 and 5)<br>
 r: Red highlight of new letter<br>
 l: Letters<br>
 w: Letters and words<br>
+m: Toggle menu<br>
 s: Settigs page<br>
 b: Back to lesson (from settings)<br>
 </div>
@@ -459,31 +461,35 @@ function toc(){
  return rv;
  }
 
-document.addEventListener("keydown",event => {
- if (event.key==="ArrowRight") next();
- if (event.key==="ArrowLeft") prev();
- 
- if (event.key==="b") load_page();
- if (event.key==="p") play_lesson();
- if (event.key==="s") get_more();
- if (event.key==="l") get_char_grid(1);
- if (event.key==="w") get_char_grid(2);
- if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
- if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
+document.addEventListener("keydown",event=>{
+  if (event.key==="ArrowRight") next();
+  if (event.key==="ArrowLeft") prev();
+  if (event.key==="Escape") document.getElementById("ftb").style.bottom = "-50px";
+  
+  if (event.key==="b") load_page();
+  if (event.key==="p") play_lesson();
+  if (event.key==="s") get_more();
+  if (event.key==="l") get_char_grid(1);
+  if (event.key==="w") get_char_grid(2);
+  if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
+  if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
+  if (event.key==="m") if(document.getElementById("ftb").style.bottom=="4px") document.getElementById("ftb").style.bottom="-50px"; else document.getElementById("ftb").style.bottom="4px";
+  
+  if (event.key==="r") {if(red==0) red=1; else red=0; localStorage.setItem("DARA_LESSON_RED", red); load_page();}
+  
+  if (event.key > -1 && event.key < 10){
+    i=event.key;
+    i++;
+    prev();
+    }
+  });
 
- if (event.key==="r") {if(red==0) red=1; else red=0; localStorage.setItem("DARA_LESSON_RED", red); load_page();}
-
- if (event.key > -1 && event.key < 10){
-  i=event.key;
-  i++;
-  prev();
-  }
- });
 function highlight(){
   if(red==0) red=1; else red=0;
   localStorage.setItem("DARA_LESSON_RED", red);
   load_page();
   }
+
 function voice(v){
   if(rd=="t") rd="y"; else rd="t";
   localStorage.setItem("DARA_LESSON_VOICE", rd);
@@ -615,14 +621,19 @@ function get_word_array(t){
 
 var prev_scroll_pos=window.pageYOffset;
 window.onscroll=function() {
- var current_scroll_pos = window.pageYOffset;
- if (prev_scroll_pos > current_scroll_pos) {
- document.getElementById("ftb").style.bottom = "4px";
- } else {
- document.getElementById("ftb").style.bottom = "-50px";
- }
- prev_scroll_pos=current_scroll_pos;
-}
+  var current_scroll_pos = window.pageYOffset;
+  if (prev_scroll_pos > current_scroll_pos) {
+  document.getElementById("ftb").style.bottom = "4px";
+  } else {
+  document.getElementById("ftb").style.bottom = "-50px";
+  }
+  prev_scroll_pos=current_scroll_pos;
+  }
+
+function toggle_buttons() {
+  var ftb=document.getElementById("ftb");
+  if (ftb.style.bottom=="4px") ftb.style.bottom = "-50px"; else ftb.style.bottom = "4px";
+  }
 
 function is_mobile() {
   return window.innerHeight > window.innerWidth;
