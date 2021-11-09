@@ -11,13 +11,21 @@
 #pic{
 	width:100%;
 	}
+#lno{
+  font-family:amiri;
+	font-size:20px;
+  direction:rtl;
+  position:absolute;
+  top:0px;
+  left:10px;
+	}
 #txt{
   font-family:amiri;
 	font-size:40px;
 	width:100%;
 	text-align:center;
   direction:rtl;
-  line-height:160%;
+  line-height:180%;
 	}
 a:hover{
 	color:red;
@@ -77,7 +85,7 @@ button:hover{
   }
 .red{
   color:#f00;
-}
+  }
 h2{
   font-family:arial;
 	font-size:20px;
@@ -131,9 +139,9 @@ img{
 		}
 	#txt{
 		float:left;
-		font-size:100px;
+		font-size:80px;
 		width:50%;
-    line-height:160%;
+    line-height:180%;
 	  }
  .cc{
     color:#fff;
@@ -155,6 +163,7 @@ img{
 </head>
 <body>
 <div id=con>
+<div id=lno></div>
 <div id=pic>
 <img id=imageid src="res/p01.jpg" onclick="load_page()" width=100%>
 </div>
@@ -209,7 +218,7 @@ const la=[
  "b_eb_ei+zei_neb| zei_neb, uere, uere # mame b_eb_ei b_o narduui. # mame b_eb_ei b_o narduum? # b_ji daie, # b_ji bab_e, # b_ji mame.| bab_e # b_",
  "baran+debari^t| ~ai neuzad, ua baran debari^t. # ~em_r^o ~au zor debi^t. # be baran dar zuu der^ui^t. # bnuar^e mam zorab ua der^uat, # der^uat bo bazar^ mi^uj di^ni^t.| debari^t # t",
  "t_eiare| b_nuar^n, t_eiare, t_eiare. # t_eiarei uatan diue? # ua dei_beme nau ~eu darane. # ~euei zuu di_t_ieue, # deb_i^t_e t_eiarei ~eu. # ~azad t_o det_uani zuut_r b_idozi_t_eue?| t_eiare # t_",
- "us+be| us, us, dara, bnuar^e ~eu teirane # uis, uis, uis # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # us+be dara, us, uazbi^ne, # bes ~euende ~azari teir bde.| us # s",
+ "us+be| us, us, dara, bnuar^e ~eu teirane # ui_s, ui_s, ui_s # ~ai, ~ai, ~azad, uere, # ~em teirane bere. # us+be dara, us, uazbi^ne, # bes ~euende ~azari teir bde.| us # s",
  "s_i^u| ~azad, s_i^ s_i^um bo berdeue. # r^aues_te nes_rin, ba berneb_meue, # ~i^s_ta s_i^ s_i^uan berdedemeue, # ~eue s_i^ui^, # ~eue duu s_i^u, # ~eue s_i^ si^u, # s_i^ui dit deui^? # bes_e, bes_e, nameui^.| s_i^u # s_",
  "r^ojbas^| r^ojbas^ babe. # r^ojbas^, nes_rin. # babe ~eue der^oi? # mnis^ b_i^_m? # nes_rin, ~i^sta bo ~is^ der^om # ~_i^uari^ duai ~is^ di^_meue, # ~eusa der^oin bo dereue.| r^ojbas^ # s^",
  "s^_uus^_e+s^_ir| bnuar^ne ~em s^_uus^_e s^_ire, # s^_iri mer^e zerdei mne, # s^_iri mer^e zerd s^_irine. # uern danis^_n, s^_uus^_ei uatan diue? # ~i^sta der^om dei_s^armeue, # deidem beuei b_idozi^_teue.| s^_uus^_e # s^_",
@@ -224,12 +233,13 @@ const la=[
  "h_i^lke| nesrin, bnuar^e ~em h_i^lkane, # ~em h_i^lke zerd+u suurane # dara g_ian, iek h_i^lkem bo b_h_i^ne # ua bot dehaui^jm bnuar^e. # h_ei, h_ei, nekei bi_haui^ji. # bas^e nai_haui^jm, netrsi. # h_er bji dara, h_er bji.| h_i^lke # h_",
  "~auazi+gul^| ho ho, kakei s^_ms^al^+jen g_ian, # ~auazi hei+gul^ li^+nadei boman? # ua be b_i^l^, gl^ hel^+dekenin, # nemami dar+gul^ der^ui^nin. # bas^e s^_ms^al^ li^+dedem botan, # ~_i^ues^ be b_i^l^, gl^ hel^+kenn, # nemami dar+gul^ br^ui^nn.| gul^ # l^",
  "kal^_ek| dara, dara. # bel^_i^ babe g_ian, bel^_i^. # uere, ~em kal^_eket bdem_i^, # be daikt bl^_i^, bot let bkat # tokl^_ekei bas^ pak bkat, # supast dekem babe, # bo ~em kal^_eke naiabe.| kal^_ek # l^_",
- "kotr+u+r^is^ol^e| teq, teq, teq. # nesrin, ~eu dergaie bkeue, # ua kotr+u r^is^ol^em bo to hi^naue, # supas, supas, babe g_ian, # hendi^ sl^q urdkem boian? # bel^i^, bel^i^, naskol^i^, # legel^ naner^eq boian dani^.| sl^q # q",
+ "kot_r+u+r^is^ol^e| teq, teq, teq. # nesrin, ~eu dergaie bkeue, # ua kot_r+u r^is^ol^em bo to hi^naue, # supas, supas, babe g_ian, # hendi^ sl^q urdkem boian? # bel^i^, bel^i^, naskol^i^, # legel^ naner^eq boian dani^.| sl^q # q",
  "kel^ebab+u+qaz| kel^ebabe r^engine, # be qaim bq_uuq_i^ne, # ~eu qazane bbezi^ne. # dei, ~eue bo naq_uuq_i^ni. # ~eu qazane bbezi^ni? # qazekan, uern bq_ir^i^nn, # ~em kel^ebabe bbezi^nn. # q_i, q_i, q_i # q_uu, q_uu, q_uu. # ha, ha, qaim nebuu.| qaz # q_",
  "dilani^| gelaui^j g_ian, ~eue dilani^ dekei? # ~azad, ~ei to dilani^ nakei? # uere lam, mn pal^de, zuuke, # duai mn, tos^ dilani^ bke. # bas^e, ua hatm, bas^ dest bgri, # bo ~emla+u ~eula ner^uani, ba nekeui.| gelaui^j # la",
  "kef| ~of ~azad, ~of, # mn be tom gut, kur^i^ki bas^+be, # iari be kef meke, # tf leser zeui meke. # li^_m b_buure, daie g_ian, # lemeula iari be kef nakem, # tf leser zeui nakem.| kef # f",
  "f_r^f_r^oke| ~eha daie ~em f_r^f_r^okeie, # mn drustm krduue, seirke. # ~af_erin dara, b_i_hi^_ne. # f_ermuu daie g_ian, bnuar^e # ~af_erin, zor bas^e, # danis^e kf_tem bo li^naui, kf_te, # bot b_i^nm duani geure? # supas daie, iek kf_tem bese.| f_r^f_r^oke # f_",
- "keu| qaqbe qaqbe qaq. # mndal^an, r^aken, uern, # ~eu keue berel^a buue, bom bgrn, # dei, bl^au bl^au buestn. # ~azad g_ian, tos^ r^ake, zuuke, # nzik ~eu gel^au darane boi bueste, # bel^am, iari legel^da meke.| gel^a # l^a"
+ "keu| qaqbe qaqbe qaq. # mndal^an, r^aken, uern, # ~eu keue berel^a buue, bom bgrn, # dei, bl^au bl^au buestn. # ~azad g_ian, tos^ r^ake, zuuke, # nzik ~eu gel^au darane boi bueste, # bel^am, iari legel^da meke.| gel^a # l^a",
+ "m_rov| gv.. gv.. # ~ai ~azad, g_iane, # ~eue berd dehaui^ji bo ~eu kot_rane? # to netgot, mel bestezmane? # bram, m_rov ua nakat, # m_rov ~azari mel nadat. # nem_zani, nes_rin g_ian, # ~idi berd nahaui^jm boian.| m_rov # v"
  ];
 
 const ca=[
@@ -253,7 +263,7 @@ const ca=[
  "`|`_eles^is^||1",
  "`^|`^ar`^ari^n||1",
  "f|f_r^f_r^oke||43",
- "v|gvegv||1",
+ "v|gvegv||46",
  "q|qaz||40",
  "k|k_eu||29",
  "g|g_ia||33",
@@ -277,7 +287,7 @@ const PLAY="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 2
 
 var i=1;
 var rd="t";
-var red=0;
+var red=1;
 var qs=window.location.search;
 qs=qs.replaceAll("?","");
 var qsa=qs.split("&")
@@ -386,8 +396,8 @@ function get_char_grid(m){
   }
 
 function load_page(){
-  var i0=i.toString();
-  var i0=i0.padStart(2,"0");
+  var is=i.toString();
+  var i0=is.padStart(2,"0");
   document.getElementById("imageid").src="res/p" + i0 + ".jpg";
   var t=la[i];
   var ta=t.split("|");
@@ -395,9 +405,11 @@ function load_page(){
   t=add_tags(t);
   if(i==0) t=toc();
   document.getElementById("txt").innerHTML=t;
-  const fsa=[40,70,70,60,50,50];
+  var lno=i>0?eng_to_kur(is):"";
+  document.getElementById("lno").innerHTML=lno;
+  const fsa=[40,70,70,60,60,60,50,48,50,50,50,50,45];
   var fs=40;
-  if(i>6) fs=fsa[0]; else fs=fsa[i];
+  if(i>12) fs=fsa[0]; else fs=fsa[i];
   if(!is_mobile()) fs=fs*1.4;
   document.getElementById("txt").style.fontSize=fs+"px";
   if(i==1 || i==2) document.getElementById("bd").style.textAlign="center";
@@ -410,6 +422,9 @@ function load_page(){
   if(i==4) {
     document.getElementById("cc").style.lineHeight="40%";
     document.getElementById("w0407").style.lineHeight="250%";
+    }
+  if(i==32 || i==41 || i==42 || i==43 || i==44) {
+    document.getElementById("cc").style.lineHeight="200%";
     }
   }
 
