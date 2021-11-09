@@ -98,13 +98,33 @@ h2{
   display: grid;
   grid-template-columns: auto auto auto auto;
 }
+.cgw{
+  display: grid;
+  grid-template-columns: auto auto;
+  }
 .ce{
   border: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center;
+  font-size:60px;
   line-height:160%;
   padding:10px;
+  }
+.cew{
+  text-align: center;
+  font-size:20px;
+  line-height:100%;
+  padding:2px;
 }
-	
+table{
+  width:100%;
+  }
+td{
+  width:33%;
+  }
+img{
+  vertical-align:middle;
+  }
+
 @media screen and (orientation:landscape) {
 	#pic{
 		float:left;
@@ -212,12 +232,12 @@ const ca=[
  "|||",
  "~_|~au||10",
  "a|dar|A|1",
- "b|babe|B|21",
- "p|ps^e|P|31",
+ "b|bab_e|B|21",
+ "p|p_s^e|P|31",
  "t|teiare|T|23",
  "c|co|J|1",
  "c^|c^alak|CH|1",
- "h^|h^lua||1",
+ "h^|h^elua||1",
  "x|xurma|KH|1",
  "d|dar|D|1",
  "r|dar|R|1",
@@ -226,26 +246,26 @@ const ca=[
  "j|juur|ZH|13",
  "s|si^u|S|25",
  "s^|s^uus^e|SH|27",
- "`|`eles^is^||",
- "`^|||1",
- "f|||43",
- "v|||1",
- "q|||40",
- "k|||29",
- "g|||33",
- "l|||35",
- "l^|||37",
- "m|||19",
- "n|||17",
- "h_|||36",
- "e|||6",
- "u|||5",
- "uu|||7",
- "o|||9",
- "i|||4",
- "i^|||11",
- "la|||41",
- "l^a|||1"
+ "`|`eles^is^||1",
+ "`^|`^ar`^ari^n||1",
+ "f|fr^fr^oke||43",
+ "v|gvegv||1",
+ "q|qaz||40",
+ "k|keu||29",
+ "g|g_ia||33",
+ "l|l_m||35",
+ "l^|kal^ek||37",
+ "m|mer^||19",
+ "n|nazi^||17",
+ "h_|h_i^lke||36",
+ "e|uere||6",
+ "u|dau||5",
+ "uu|duu||7",
+ "o|do||9",
+ "i|dari di||4",
+ "i^|deri^||11",
+ "la|gelaui^j||41",
+ "l^a|gel^a||1"
  ];
 
 const PAUSE="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
@@ -324,6 +344,7 @@ t: Tara voice<br>
 y: Yad voice (now lesson 1 and 5)<br>
 r: Red highlight of new letter<br>
 l: Letters<br>
+w: Letters and words<br>
 s: Settigs page<br>
 b: Back to lesson (from settings)<br>
 </div>
@@ -339,15 +360,19 @@ Audio recording and processing: Fadhil (1998)<br>
   document.getElementById("txt").innerHTML=t;
   }
 
-function get_char_grid(){
+function get_char_grid(m){
   clearTimeout(timer);
   k=0;
   document.getElementById("play").innerHTML=PLAY;
-  var t="<div class=cg>";
+  var t;
+  t=m==2?"<div class=cgw>":"<div class=cg>";
   for(j=1; j<ca.length; j++){
     cea=ca[j].split("|");
     cet=eng_to_kur(cea[0]);
-    t+="<div class=ce><a onclick='goto("+cea[3]+")'>"+cet+"</a></div>";
+    var n=cea[3];
+    var n0=n.toString();
+    n0=n0.padStart(2,"0");
+    t+=m==2?" <div class=ce><table><tr><td><a onclick='goto("+n+")'>"+cet+"</a></td><td><div class=cew>"+eng_to_kur(cea[1])+"</div></td><td valign=bottom><img src=res/p"+n0+".jpg height=80px></td></tr></table></div> ":"<div class=ce><a onclick='goto("+n+")'>"+cet+"</a></div>";
     }
   t+="</div>"
   document.getElementById("imageid").src="res/p00.jpg";
@@ -396,7 +421,10 @@ function toc(){
  var rv="<div id=bd>";
  var pit="p_itekan";
  pit=eng_to_kur(pit);
- rv+="<a onclick='get_char_grid()'>"+pit+"</a><br>"
+ rv+="<a onclick='get_char_grid(1)'>"+pit+"</a> "
+ pit="p_it u us^e";
+ pit=eng_to_kur(pit);
+ rv+="<a onclick='get_char_grid(2)'>"+pit+"</a><br>"
  for (var j=1;j<la.length;j++){
  var ta=la[j].split("|");
  if(ta[0]=="") ta[0]="dara dara";
@@ -417,7 +445,8 @@ document.addEventListener("keydown",event => {
  if (event.key==="b") load_page();
  if (event.key==="p") play_lesson();
  if (event.key==="s") get_more();
- if (event.key==="l") get_char_grid();
+ if (event.key==="l") get_char_grid(1);
+ if (event.key==="w") get_char_grid(2);
  if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
  if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
 
