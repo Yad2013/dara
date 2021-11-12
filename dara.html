@@ -66,6 +66,13 @@ a:hover{
   bottom:4px;
   transition: bottom 0.3s;
 	}
+#cvs{
+  position:absolute;
+  top:0px;
+  right:0px;
+  z-index:-1;
+  border:0px gray solid;
+	}
 button{
   width:60px;
   height:40px;
@@ -242,7 +249,9 @@ const la=[
  "m_rov| gv.. gv.. # ~ai ~azad, g_iane, # ~eue berd dehaui^ji bo ~eu kot_rane? # to netgot, mel bestezmane? # bram, m_rov ua nakat, # m_rov ~azari mel nadat. # nem_zani, nes_rin g_ian, # ~idi berd nahaui^jm boian.| m_rov # v",
  "gv_e+gv_i+ba| uere ~azad, ua v_r^ev_r^ di^t, # r^enge ~eue dengi ~utumbi^l bi^t. # nazi^, ~eue baie gv_egv_i di^t, # v_r^ei ~utumbi^l ua nabi^t, # r^es^eba, ke hel^+dekat, # ueha be tundi gv_egv dekat.| v_r^ev_r^ # v_",
  "nani+sac| nesrin ~arezuui karkrdn dekat, # ua nani sac dekat, # iarmeti daiki dedat. # dara qnc danis^tuue, seir dekat, # sern_c le desti nesrin dedat. # leulaue zeineb pi^+dekeni^t, # del^i^, ua daik pl^aui brn_c li^+deni^t.| sac # c",
- "c_uuc_ekan| c_ik, c_ik, c_ik. # ~ai, c_uuc_e c_uanekan, # uern, ua c_om hi^naue botan. # c_ik, c_ik, c_ik # r^auestn, ua di^_m bo latan, # ~eusa deidem be hemuutan. # c_uuc_ekan, denuuk neden le pen_c_em, # bes^i hemuutan dedem.| c_o # c_"
+ "c_uuc_ekan| c_ik, c_ik, c_ik. # ~ai, c_uuc_e c_uanekan, # uern, ua c_om hi^naue botan. # c_ik, c_ik, c_ik # r^auestn, ua di^_m bo latan, # ~eusa deidem be hemuutan. # c_uuc_ekan, denuuk neden le pen_c_em, # bes^i hemuutan dedem.| c_o # c_",
+ "mam+urc^| ~ai ~azad, uere bnuar^e urc^, # ~eu naue pr^ buue le kur^+u k_c^. # mam urc^ leser iek qac^ uestaue, # deuri be kur^+u k_c^ giraue. # r^ast dekei, ~eueta hestaue, # kur^+u k_c^ deurian daue. # hic^ kes nemaue le kur^+u k_c^, # hemuu hatuun bo seiri mam urc^.| urc^ # c^",
+ "c^alak| c^_oni c^alak, c^auekem? # c^ak_m babe g_ian, supast dekem. # ~eue bo kui^ dec^_it kur^ekem? # dec^_m seiri ~eu bec^_ke g_c^_ekeie dekem. # nec^_i c^alak, nec^_i, # ~eu bec^_keie srke, nziki nekeui # uere ba b_c^_in bo nau ~eu gul^ane, # bo lai ~eu c^_oleke cuanane.| c^alak # c^_"
  ];
 
 const ca=[
@@ -253,7 +262,7 @@ const ca=[
  "p|p_s^e|P|31",
  "t|t_eiare|T|23",
  "c|c_o|J|48",
- "c^|c^alak|CH|1",
+ "c^|c^alak|CH|50",
  "h^|h^_elua||1",
  "x|x_urma|KH|1",
  "d|dar|D|1",
@@ -291,6 +300,7 @@ const PLAY="<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 2
 var i=1;
 var rd="t";
 var red=1;
+var hlf=0;
 var qs=window.location.search;
 qs=qs.replaceAll("?","");
 var qsa=qs.split("&")
@@ -364,6 +374,7 @@ r: Red highlight of new letter<br>
 l: Letters<br>
 w: Letters and words<br>
 m: Menu toggle<br>
+h: Horizontal line toggle (some lessons)<br>
 s: Settigs page<br>
 b: Back to lesson (from settings)<br>
 </div>
@@ -409,6 +420,7 @@ function load_page(){
   t=eng_to_kur(t);
   t=add_tags(t);
   if(i==0) t=toc();
+  t+="<canvas id=cvs></canvas>";
   document.getElementById("txt").innerHTML=t;
   var lno=i>0?eng_to_kur(is):"";
   document.getElementById("lno").innerHTML=lno;
@@ -427,6 +439,23 @@ function load_page(){
   if(i==4) {
     document.getElementById("cc").style.lineHeight="40%";
     document.getElementById("w0407").style.lineHeight="250%";
+    }
+  if(hlf && (i==4 || i==5 || i==15 || i==16)){
+    var cvs=document.getElementById("cvs");
+    cvs.width=680;
+    cvs.height=600;
+    var ctx=cvs.getContext("2d");
+    ctx.lineWidth=1;
+    ctx.strokeStyle="#ccc";
+    var hla=[103,251,378];
+    if(i==15 || i==16) hla=[71,173,257,341,425];
+    for (j in hla){
+      var ht=hla[j];
+      ctx.beginPath();
+      ctx.moveTo(0, ht);
+      ctx.lineTo(680, ht);
+      ctx.stroke();
+      }
     }
   if(i==32 || i==41 || i==42 || i==43 || i==44) {
     document.getElementById("cc").style.lineHeight="200%";
@@ -474,6 +503,7 @@ document.addEventListener("keydown",event=>{
   if (event.key==="s") get_more();
   if (event.key==="l") get_char_grid(1);
   if (event.key==="w") get_char_grid(2);
+  if (event.key==="h") {hlf=!hlf; load_page();}
   if (event.key==="t") {rd="t"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
   if (event.key==="y") {rd="y"; load_page(); localStorage.setItem("DARA_LESSON_VOICE", rd);}
   if (event.key==="m") if(document.getElementById("ftb").style.bottom=="4px") document.getElementById("ftb").style.bottom="-50px"; else document.getElementById("ftb").style.bottom="4px";
@@ -704,13 +734,14 @@ function eng_to_kur(eng){
 TO-DO
 =====
 add more pages
-add sound
-make settings: voice, letter red
+add more sound
 add translations
 
 ====
 DONE
 ====
+add line for calligraphy
+make settings: voice, lextter red
 add list of letters
 add list of letters, words and pictures
 add credits
