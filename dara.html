@@ -31,6 +31,9 @@ a:hover{
 	color:red;
 	cursor:pointer;
 	}
+#ttl{
+  line-height:150%;
+	}
 #bd{
 	text-align:right;
   direction:rtl;
@@ -139,6 +142,45 @@ td{
 img{
   vertical-align:middle;
   }
+  
+.wd {
+  position: relative;
+  display: inline-block;
+}
+
+.wd .tt {
+  visibility: hidden;
+  font-size:26px;
+  line-height:32px;
+  background-color:#555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom:90%;
+  }
+
+.wd .tt .ttt {
+  border:0px red solid;
+  }
+
+.wd .tt .ttw {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  }
+
+.wd:hover .tt {
+  visibility: visible;
+  }
+
 @media screen and (orientation:landscape) {
 	#pic{
 		float:left;
@@ -149,6 +191,7 @@ img{
 		font-size:80px;
 		width:50%;
     line-height:180%;
+    margin-top:25px;
 	  }
  .cc{
     color:#fff;
@@ -211,7 +254,7 @@ const la=[
  "duu+dar| dara duu dari di # duu dar, # duu dari duur duur.| duu # uu",
  "uazi| zara, zara # uere uazi. # zuu uere, zuu.| zara # z",
  "do| dade, do, do. # uere dara, uere, # dade doi zore. # dei, zuu uere.| do # o",
- "~au| ~ai, ~ai, #doi dade ~aui zore. #~_oi, ~_oi, dara, #do ~aui ua zore.| ~au # ~_",
+ "~au| ~ai, ~ai, # doi dade ~aui zore. # ~_oi, ~_oi, dara, # do ~aui ua zore.| ~au # ~_",
  "dade| dade, dade, # uere deri^. # ~eue ~azade, doi deui^. # ~_i^, ~_i^, dara. # dade ua di^.| deri^ # i^",
  "r^au| zerde, zerde ua r^aue, # dei, dei, # ua ~azad r^oi # ~_oi, zerde deuer^i^. # zerde dr^e, # zerde zor zor dr^e.| r^au # r^",
  "do+r^jaue|- ~azad, ~azad, uere juuri^, # ua doi dade r^jaue. # - ~_oi, ~eue duu r^oje der^ji^. # duu r^oje doi dade der^ji^.| juur # j",
@@ -262,6 +305,26 @@ const la=[
  "`^ar`^ari^n| ~eu suarane `^ar`^ari^n, deken, # be s^i^r+u qel^`^aneue `^ar deden. # qel^`^an uek sac uaie, ti`^ naibr^i^, # bo s^er^es^ir bekardi^. # ua suari^k pi^s^ hemuuian keutuue, # suari uul^a`^_i^ki r^es^ buue, # hemuuiani beci^+hi^s^tuue.| `^ar`^ari^n # `^_"
  ];
 
+var ttae=[
+  "||",
+  "Tree|Tree|Tree|Tree",
+  "Dara|Dara|Dara|Dara",
+  "|Dara|Dara|Tree|Tree|d|a|r",
+  "Tree|Dara|Tree he|Saw|Tree he|saw|Dara|He saw tree|i, y",
+  "Snare (string)|Oh|Oh|Snare (string)|Snare (string) of|Dara (person name)|Snare (string)|Snare (string)|u, w",
+  "Dara|Come|outside|Dara|Come|Come|Dara|Come|Outside|Come|e"
+  ];
+
+var ttaa=[
+  "||",
+  "شجرة|شجرة|شجرة|شجرة",
+  "دارا|دارا|دارا|دارا",
+  "|دارا|دارا|شجرة|شجرة|d|a|r",
+  "شجرة|دارا|شجرة هو|رأى|هو شجرة|رأى|دارا|هو رأي شجرة|ي",
+  "خيط|اي|اي|خيط|خيظ (مضاف)|دارا|خيط|خيط|و",
+  "دارا|تعال|خارج|دارا|تعال|تعال|دارا|تعال|خارج|تعال|فتحة"
+  ];
+
 const ca=[
  "|||",
  "~_|~au||10",
@@ -309,6 +372,7 @@ var i=1;
 var rd="t";
 var red=1;
 var hlf=0;
+var trl=0; // trl: tranlsation language 0: no, 1: eng, 2: ara
 var qs=window.location.search;
 qs=qs.replaceAll("?","");
 var qsa=qs.split("&")
@@ -432,7 +496,7 @@ function load_page(){
   document.getElementById("txt").innerHTML=t;
   var lno=i>0?eng_to_kur(is):"";
   document.getElementById("lno").innerHTML=lno;
-  const fsa=[40,70,70,60,60,60,50,48,50,50,50,50,45];
+  const fsa=[40,70,70,60,60,60,50,50,50,50,50,50,45];
   var fs=40;
   if(i>12) fs=fsa[0]; else fs=fsa[i];
   if(!is_mobile()) fs=fs*1.4;
@@ -448,17 +512,20 @@ function load_page(){
     document.getElementById("cc").style.lineHeight="40%";
     document.getElementById("w0407").style.lineHeight="250%";
     }
-  if(hlf && (i==4 || i==5 || i==15 || i==16)){
+  if(hlf && (i==4 || i==5 || i>13)){
     var cvs=document.getElementById("cvs");
+    var lc=la[i].split("#").length;
     cvs.width=680;
-    cvs.height=600;
+    cvs.height=100*lc;
     var ctx=cvs.getContext("2d");
     ctx.lineWidth=1;
-    ctx.strokeStyle="#ccc";
-    var hla=[103,251,378];
-    if(i==15 || i==16) hla=[71,173,257,341,425];
-    for (j in hla){
-      var ht=hla[j];
+    ctx.strokeStyle="#555";
+    var hla=[116,127];
+    if(i>13) hla=[88,84];
+    var ht=hla[0];
+    for (j=0;j<lc;j++){
+      console.log(j);
+      if(j>0) ht+=hla[1];
       ctx.beginPath();
       ctx.moveTo(0, ht);
       ctx.lineTo(680, ht);
@@ -506,6 +573,9 @@ document.addEventListener("keydown",event=>{
   if (event.key==="ArrowLeft") prev();
   if (event.key==="Escape") document.getElementById("ftb").style.bottom = "-50px";
   
+  if (event.key==="e") trl=1;
+  if (event.key==="a") trl=2;
+
   if (event.key==="b") load_page();
   if (event.key==="p") play_lesson();
   if (event.key==="s") get_more();
@@ -551,21 +621,21 @@ function add_tags(t){
    var lc=w.slice(-1);
    if(lc=="."|| lc=="،"|| lc=="!"|| lc=="؟"|| lc=="|") {
      w=w.slice(0,-1);
-     tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a>"+lc+" ";
+     tw="<a id=w"+i0+k0+" class=wd onmouseover=tt('"+i0+k0+"') onclick=ps('"+i0+k0+"')>"+w+"</a>"+lc+" ";
     } else{
-     tw="<a id=w"+i0+k0+" onclick=ps('"+i0+k0+"')>"+w+"</a> ";
+     tw="<a id=w"+i0+k0+" class=wd onmouseover=tt('"+i0+k0+"') onclick=ps('"+i0+k0+"')>"+w+"</a> ";
     }
    if(w=="|" || w=="#" || w=="-" || w==" ") tw=w+" ";
    rv+=tw;
    if(w!="|" && w!="#" && w!="-") k++
  }
  var a=rv.split("|");
- var tt="<div id=tt>"+a[0]+"</div>";
+ var ttl="<div id=ttl>"+a[0]+"</div>";
  var bd="<div id=bd>"+a[1]+"</div>";
  var cc="<div id=ft><div id=cc>"+a[2]+"</div>"; //<div id=cp><img src='res/p"+i0+".jpg' width=100px></div></div>";
  if(i<3)
  cc="";
- rv=tt+bd+cc;
+ rv=ttl+bd+cc;
  rv=rv.replaceAll("#","<br>");
  rv=rv.replaceAll("+"," ");
  var cl=wa[wa.length-1];
@@ -620,6 +690,40 @@ function play_lesson_recursive(){
     document.getElementById("play").innerHTML=PLAY;
     location.reload();
     }
+  }
+
+function tt(id){
+  const tts=document.getElementsByClassName('tt');
+  for(j in tts) tts[j].outerHTML="";
+  var wel=document.getElementById("w"+id);
+  var ttsp=document.createElement('span');
+  ttsp.setAttribute("id", "t"+id);
+  ttsp.setAttribute("class", "tt");
+  var tta=[];
+  if(trl==1) tta=ttae;
+  if(trl==2) tta=ttaa;
+  if(tta.length==0) return;
+  var tt=tta[i];
+  tt=tt.replaceAll(" ", "&nbsp;")
+  ttwa=tt.split("|");
+  var idw=id.slice(-2);
+  idw=parseInt(idw);
+  ttsp.innerHTML=`<div class=ttt>${ttwa[idw]}</div><div id=a${id} class=ttw></div>`;
+  wel.appendChild(ttsp);
+  var tel=document.getElementById("t"+id);
+  var ael=document.getElementById("a"+id);
+  var telw=tel.offsetWidth;
+  var welw=wel.offsetWidth;
+  var well=wel.offsetLeft;
+  var ww=window.innerWidth;
+  var xt=(telw/2)+(welw/2);
+  var nr=well+xt;
+  var nl=well-(telw/2)+(welw/2);
+  var xta=0;
+  if(nr>ww) {xt-=nr-ww; xta=nr-ww;}
+  if(nl<0) {xt-=nl; xta=nl;}
+  tel.style.transform="translate("+xt+"px)";
+  if(xta) ael.style.transform="translate("+xta+"px)";
   }
 
 function get_sylables(t){
