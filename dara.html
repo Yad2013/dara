@@ -184,7 +184,9 @@ img{
 .wd:hover .tt {
   visibility: visible;
   }
-
+a {
+  text-decoration:none;
+  }
 @media screen and (orientation:landscape) {
 	#pic{
 		float:left;
@@ -463,7 +465,8 @@ Text entry: Yad<br>
 Coding: Yad (with some help from dad)<br>
 Voice: Tara (10 years old in 1998) and Yad (8 years old in 2021)<br>
 Animation: Karzan (12 years old in 1998)<br>
-Audio recording and processing: Fadhil (1998)<br>
+Audio recording and processing: Fadhil (1998)<br><br>
+<a href=https://montessorikurdistan.com target=_blank>Montessori Kurdistan</br>
 </div>
   `;
   document.getElementById("txt").innerHTML=t;
@@ -527,7 +530,7 @@ function load_page(){
     var ctx=cvs.getContext("2d");
     ctx.lineWidth=1;
     ctx.strokeStyle="#555";
-    var hla=[116,136,127,8];
+    var hla=[116,136,126,8];
     if(i>13) hla=[88,94,84,4];
     cvs.width=window.innerWidth/2;
     cvs.height=hla[1]*lc;
