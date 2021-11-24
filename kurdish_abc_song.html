@@ -138,8 +138,10 @@ var j=0;
 var p=0;
 var msc=2000;
 var scl=2.2;
-const abl=[1,21,22,23,24];
-const bbl=[5,6,7,8,16,17,25];
+var qs=window.location.search;
+qs=qs.replaceAll("?","");
+console.log("qs:",qs);
+const blo=[0,20,0,0,0,-100,-100,-100,-100,0,0,0,0,0,0,0,-50,-50,0,0,0,50,50,50,50,-50,0,0,0,0,0,0,0,0,0,0];
 function animate_slides(){
     setTimeout(() => {
         p=j>0?j-1:0;
@@ -147,8 +149,11 @@ function animate_slides(){
         document.getElementsByClassName('ltr')[j].style="transform: scale("+scl+");";
         document.getElementsByClassName('imd')[j].style="transform: scale("+scl+");";
         document.getElementsByClassName('wrd')[j].style="transform: scale("+scl+");";
-        if(abl.includes(j)) document.getElementsByClassName('ltr')[j].style="line-height:650px; transform: scale("+scl+");";
-        if(bbl.includes(j)) document.getElementsByClassName('ltr')[j].style="line-height:550px; transform: scale("+scl+");";
+        if(qs=="shift") {
+            var bl=600+blo[j];
+            console.log(bl);
+            document.getElementsByClassName('ltr')[j].style="line-height:"+bl+"px; transform: scale("+scl+");";
+            }
         // document.getElementsByClassName('wrd')[p].style="visibility:hidden;"
         // document.getElementById(p).style="visibility:hidden;";
         document.getElementById(j).style="visibility:visible;";
@@ -158,7 +163,7 @@ function animate_slides(){
             // console.log("loop 2:",j,p);
             document.getElementById(j).style="visibility:hidden;";
             j++;
-        if(j<cnta.length) animate_slides();
+            if(j<cnta.length) animate_slides();
             }, msc);
         }, msc);
     }
