@@ -11,9 +11,13 @@
 @font-face {
  font-family: noto;
  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap');
-
+ }
+@font-face{
+  font-family: simplified;
+ src: url('res/arial.ttf');
 }
-#con{
+
+ #con{
   font-family:amiri;
   }
 #pic{
@@ -495,7 +499,9 @@ function get_char_grid(m){
 
 function load_page(){
   var con=document.getElementById("con");
-  con.style.fontFamily=fnt==0?"amiri":"noto";
+  if (fnt==0) con.style.fontFamily="amiri";
+  if (fnt==1) con.style.fontFamily="noto";
+  if (fnt==2) con.style.fontFamily="simplified";
   var is=i.toString();
   var i0=is.padStart(2,"0");
   document.getElementById("imageid").src="res/p" + i0 + ".jpg";
@@ -535,7 +541,8 @@ function load_page(){
     cvs.width=window.innerWidth/2;
     cvs.height=hla[1]*lc;
     var hti=0;
-    var ht=fnt==0?0:hla[3];
+    var ht=0;
+    if(fnt==1) ht=hla[3];
     for (j=0;j<lc;j++){
       console.log(j);
       hti=hla[j];
@@ -602,7 +609,12 @@ document.addEventListener("keydown",event=>{
   if (event.key==="m") if(document.getElementById("ftb").style.bottom=="4px") document.getElementById("ftb").style.bottom="-50px"; else document.getElementById("ftb").style.bottom="4px";
   
   if (event.key==="r") {if(red==0) red=1; else red=0; localStorage.setItem("DARA_LESSON_RED", red); load_page();}
-  if (event.key==="f") {if(fnt==0) fnt=1; else fnt=0; localStorage.setItem("DARA_LESSON_FONT", fnt); load_page();}
+  if (event.key==="f") {
+    fnt++;
+    if(fnt>2) fnt=0; 
+    localStorage.setItem("DARA_LESSON_FONT", fnt);
+    load_page();
+    }
   
   if (event.key > -1 && event.key < 10){
     i=event.key;
@@ -868,6 +880,7 @@ add translations
 ====
 DONE
 ====
+Change font
 add line for calligraphy
 make settings: voice, lextter red
 add list of letters
