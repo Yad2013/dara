@@ -98,7 +98,7 @@ button:hover{
 .pressed{
   color:#f00;
   }
-#dau{
+#dau, #fnb{
 	font-size:30px;
   line-height:30%;
   }
@@ -382,6 +382,7 @@ var i=1;
 var rd="t";
 var red=1; // highlight new letter as red
 var fnt=0; // font 0: amirir 1: noto
+var fnf="amiri"; // font family
 var hlf=0; 
 var trl=0; // trl: tranlsation language 0: no, 1: eng, 2: ara
 var qs=window.location.search;
@@ -431,6 +432,8 @@ function get_more(){
   document.getElementById("play").innerHTML=PLAY;
   var dau=red==0?"داو":"دا<a class=red>و</a>";
   var hnw=`<button id=dau onclick="highlight()">${dau}</button`;
+  const ddd="دارا";
+  var fnb=`<button id=fnb onclick="change_font()">${ddd}</button`;
   var voice=rd=="t"?"<button class=red onclick=voice('t')>Tara</button> <button onclick=voice('y')>Yad</button>":"<button onclick=voice('t')>Tara</button> <button class=red onclick=voice('y')>Yad</button>";
   const t=`
 <h2>Settings</h2>
@@ -442,6 +445,9 @@ Voice: </td><td align=right>${voice}</td>
 </tr>
 <tr>
 <td>Hightlight New Letters: </td><td align=right>${hnw}</<td>
+</tr>
+<tr>
+<td>Change Font: </td><td align=right>${fnb}</<td>
 </tr>
 </table>
 </div>
@@ -474,6 +480,8 @@ Audio recording and processing: Fadhil (1998)<br><br>
 </div>
   `;
   document.getElementById("txt").innerHTML=t;
+  document.getElementById("dau").style=`font-family:${fnf}`;
+  document.getElementById("fnb").style=`font-family:${fnf}`;
   }
 
 function get_char_grid(m){
@@ -499,9 +507,10 @@ function get_char_grid(m){
 
 function load_page(){
   var con=document.getElementById("con");
-  if (fnt==0) con.style.fontFamily="amiri";
-  if (fnt==1) con.style.fontFamily="noto";
-  if (fnt==2) con.style.fontFamily="simplified";
+  if (fnt==0) fnf="amiri";
+  if (fnt==1) fnf="noto";
+  if (fnt==2) fnf="simplified";
+  con.style.fontFamily=fnf;
   var is=i.toString();
   var i0=is.padStart(2,"0");
   document.getElementById("imageid").src="res/p" + i0 + ".jpg";
@@ -610,12 +619,7 @@ document.addEventListener("keydown",event=>{
   if (event.key==="m") if(document.getElementById("ftb").style.bottom=="4px") document.getElementById("ftb").style.bottom="-50px"; else document.getElementById("ftb").style.bottom="4px";
   
   if (event.key==="r") {if(red==0) red=1; else red=0; localStorage.setItem("DARA_LESSON_RED", red); load_page();}
-  if (event.key==="f") {
-    fnt++;
-    if(fnt>2) fnt=0; 
-    localStorage.setItem("DARA_LESSON_FONT", fnt);
-    load_page();
-    }
+  if (event.key==="f") change_font();
   
   if (event.key > -1 && event.key < 10){
     i=event.key;
@@ -636,6 +640,12 @@ function voice(v){
   load_page();
   }
 
+function change_font() {
+  fnt++;
+  if(fnt>2) fnt=0; 
+  localStorage.setItem("DARA_LESSON_FONT", fnt);
+  load_page();
+  }
 function add_tags(t){
  var rv="";
  var wa=t.split(" ");
