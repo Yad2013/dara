@@ -536,15 +536,16 @@ function load_page(){
     var ctx=cvs.getContext("2d");
     ctx.lineWidth=1;
     ctx.strokeStyle="#555";
-    var hla=[116,136,126,8];
-    if(i>13) hla=[88,94,84,4];
+    var hla=[116,136,126,8,-1];
+    if(i>13) hla=[88,94,84,4,-1];
     cvs.width=window.innerWidth/2;
     cvs.height=hla[1]*lc;
     var hti=0;
     var ht=0;
     if(fnt==1) ht=hla[3];
+    if(fnt==2) ht=hla[4];
     for (j=0;j<lc;j++){
-      console.log(j);
+      // console.log(j);
       hti=hla[j];
       if(j>1) hti=hla[2]
       ht+=hti;
